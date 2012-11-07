@@ -27,6 +27,7 @@ public class Etat extends Activity {
 				text1.setText(message1);
 			} else if (msg.what == 2) {
 				text2.setText(message2);
+				System.out.println("--------SET MESSAGE 2");
 			} else if (msg.what == 3) {
 				text3.setText(message3);
 			} else if (msg.what == 4) {
@@ -125,35 +126,35 @@ public class Etat extends Activity {
 					e.printStackTrace();
 				}
 
-				if (x == 0)
-					// message = Home_Control.getTempInt() + "°";
-					// else if (x == 1)
-					// message1 = Home_Control.getTempExt() + "°";
-					// else if (x == 2)
-					// message2 = Home_Control.getLightInt() + " lux";
-					// else if (x == 3)
-					// message3 = Home_Control.getLightExt() + " lux";
-					// else if (x == 4) {
-					// boolean v = Home_Control.getWeather();
-					// if (v)
-					// message4 = "Soleil";
-					// else
-					// message4 = "Pluie";
-					// } else if (x == 5) {
-					// int a = Home_Control.getShutterState();
-					// if (a == 0) {
-					// message5 = "Fermé";
-					// } else if (a == 1) {
-					// message5 = "Mi-Hauteur";
-					// } else {
-					// message5 = "Ouvert";
-					// }
-					// } else if (x == 6)
-					// message6 = Home_Control.getLampeLevel() + "%";
-					// else if (x == 7)
-					// message7 = Home_Control.getLampeBrightness() + "lux";
+				// if (x == 0)
+				// message = Home_Control.getTempInt() + "°";
+				// else if (x == 1)
+				// message1 = Home_Control.getTempExt() + "°";
+				// else if (x == 2)
+				// message2 = Home_Control.getLightInt() + " lux";
+				// else if (x == 3)
+				// message3 = Home_Control.getLightExt() + " lux";
+				// else if (x == 4) {
+				// boolean v = Home_Control.getWeather();
+				// if (v)
+				// message4 = "Soleil";
+				// else
+				// message4 = "Pluie";
+				// } else if (x == 5) {
+				// int a = Home_Control.getShutterState();
+				// if (a == 0) {
+				// message5 = "Fermé";
+				// } else if (a == 1) {
+				// message5 = "Mi-Hauteur";
+				// } else {
+				// message5 = "Ouvert";
+				// }
+				// } else if (x == 6)
+				// message6 = Home_Control.getLampeLevel() + "%";
+				// else if (x == 7)
+				// message7 = Home_Control.getLampeBrightness() + "lux";
 
-					handler.sendEmptyMessage(x++);
+				handler.sendEmptyMessage(x++);
 
 			}
 		}).start();

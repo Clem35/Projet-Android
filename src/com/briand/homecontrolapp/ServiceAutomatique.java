@@ -23,7 +23,7 @@ public class ServiceAutomatique extends Service {
 
 		while (i > 0) {
 			popUp("tour : " + i);
-			Home_Control.autoShutterState2();
+			Home_Control.autoShutterState();
 			Home_Control.autoLightLevel();
 
 		}
