@@ -454,6 +454,8 @@ public class Home_Control {
 		double A = 0.0501;
 		double B = -0.0132;
 		double delta;
+		if (C==0)
+			return 0;
 		delta = ((B * B) - (4 * A * C));
 		if (delta < 0) {
 			return 0;
