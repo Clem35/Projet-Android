@@ -91,6 +91,9 @@ public class MainActivity extends Activity {
 		super.onRestart();
 	}
 
+	/**
+	 * 
+	 */
 	private void traitementAutomatique() {
 
 		new Thread(new Runnable() {
@@ -100,6 +103,7 @@ public class MainActivity extends Activity {
 				while (x) {
 					Home_Control.autoShutterState();
 					Home_Control.autoLightLevel();
+					System.out.println("-----Traitement Automatique-----");
 				}
 			}
 		}).start();

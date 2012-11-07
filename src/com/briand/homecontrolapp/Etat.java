@@ -86,67 +86,75 @@ public class Etat extends Activity {
 
 			@Override
 			public void run() {
-				
-					if (x == 8)
-						x = 0;
-					if (x == 0)
-						message = Home_Control.getTI + "°";
-					else if (x == 1)
-						message1 = Home_Control.getTE + "°";
-					else if (x == 2)
-						message2 = Home_Control.getLI + " lux";
-					else if (x == 3)
-						message3 = Home_Control.getLE + " lux";
-					else if (x == 4) {
-						boolean v = Home_Control.getW;
-						if (v)
-							message4 = "Soleil";
-						else
-							message4 = "Pluie";
-					} else if (x == 5) {
-						int a = Home_Control.getSS;
-						if (a == 0) {
-							message5 = "Fermé";
-						} else if (a == 1) {
-							message5 = "Mi-Hauteur";
-						} else {
-							message5 = "Ouvert";
-						}
-					} else if (x == 6)
-						message6 = Home_Control.getLL + "%";
-					else if (x == 7)
-						message7 = Home_Control.getLB+ "lux"; 
 
-//					if (x == 0)
-//						message = Home_Control.getTempInt() + "°";
-//					else if (x == 1)
-//						message1 = Home_Control.getTempExt() + "°";
-//					else if (x == 2)
-//						message2 = Home_Control.getLightInt() + " lux";
-//					else if (x == 3)
-//						message3 = Home_Control.getLightExt() + " lux";
-//					else if (x == 4) {
-//						boolean v = Home_Control.getWeather();
-//						if (v)
-//							message4 = "Soleil";
-//						else
-//							message4 = "Pluie";
-//					} else if (x == 5) {
-//						int a = Home_Control.getShutterState();
-//						if (a == 0) {
-//							message5 = "Fermé";
-//						} else if (a == 1) {
-//							message5 = "Mi-Hauteur";
-//						} else {
-//							message5 = "Ouvert";
-//						}
-//					} else if (x == 6)
-//						message6 = Home_Control.getLampeLevel() + "%";
-//					else if (x == 7)
-//						message7 = Home_Control.getLampeBrightness() + "lux"; 
+				if (x == 8)
+					x = 0;
+				if (x == 0)
+					message = Home_Control.getTI + "°";
+				else if (x == 1)
+					message1 = Home_Control.getTE + "°";
+				else if (x == 2)
+					message2 = Home_Control.getLI + " lux";
+				else if (x == 3)
+					message3 = Home_Control.getLE + " lux";
+				else if (x == 4) {
+					boolean v = Home_Control.getW;
+					if (v)
+						message4 = "Soleil";
+					else
+						message4 = "Pluie";
+				} else if (x == 5) {
+					int a = Home_Control.getSS;
+					if (a == 0) {
+						message5 = "Fermé";
+					} else if (a == 1) {
+						message5 = "Mi-Hauteur";
+					} else {
+						message5 = "Ouvert";
+					}
+				} else if (x == 6)
+					message6 = Home_Control.getLL + "%";
+				else if (x == 7)
+					message7 = Home_Control.getLB + "lux";
+
+				System.out.println("-----Traitement Etats-----");
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				if (x == 0)
+					// message = Home_Control.getTempInt() + "°";
+					// else if (x == 1)
+					// message1 = Home_Control.getTempExt() + "°";
+					// else if (x == 2)
+					// message2 = Home_Control.getLightInt() + " lux";
+					// else if (x == 3)
+					// message3 = Home_Control.getLightExt() + " lux";
+					// else if (x == 4) {
+					// boolean v = Home_Control.getWeather();
+					// if (v)
+					// message4 = "Soleil";
+					// else
+					// message4 = "Pluie";
+					// } else if (x == 5) {
+					// int a = Home_Control.getShutterState();
+					// if (a == 0) {
+					// message5 = "Fermé";
+					// } else if (a == 1) {
+					// message5 = "Mi-Hauteur";
+					// } else {
+					// message5 = "Ouvert";
+					// }
+					// } else if (x == 6)
+					// message6 = Home_Control.getLampeLevel() + "%";
+					// else if (x == 7)
+					// message7 = Home_Control.getLampeBrightness() + "lux";
 
 					handler.sendEmptyMessage(x++);
-		
+
 			}
 		}).start();
 	}

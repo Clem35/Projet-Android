@@ -36,6 +36,7 @@ public class Home_Control {
 					getW=getWeather();
 					getLL=getLampeLevel();
 					getLB=getLampeBrightness();
+					System.out.println("-----Traitement Getteurs -----");
 				}
 			}
 		}).start();
