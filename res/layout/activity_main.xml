@@ -1,0 +1,176 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Background" >
+
+    <!-- STATUS BAR -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/StatusBar" >
+
+        <ImageView style="@style/RetourHome" 
+            android:clickable="false"/>
+
+        <LinearLayout style="@style/BarStatusBar" />
+
+        <TextView
+            android:id="@+id/text_bar_accueil"
+            style="@style/TextStatusBar"
+            android:text="@string/Accueil"
+            tools:context=".MainActivity" />
+
+        <LinearLayout style="@style/BarStatusBar" />
+    </LinearLayout>
+
+    <!-- BODY -->
+    <!-- Mode automatique -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="automatic_Mode"
+            android:text="@string/switch1"
+            android:textColor="#2d4d70" />
+    </LinearLayout>
+
+    <!-- Consignes -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <ImageView
+            android:id="@+id/ImageConsigne"
+            style="@style/ImageActionBar"
+            android:src="@drawable/consigne" />
+
+        <TextView
+            android:id="@+id/textViewConsigne"
+            style="@style/TextActionBar"
+            android:text="@string/btn_consignes" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            style="@style/NextActionBar"
+         
+            android:onClick="click_Consigne" />
+
+    </LinearLayout>
+
+    <!-- ETATS -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <ImageView
+            android:id="@+id/ImageSate"
+            style="@style/ImageActionBar"
+            android:src="@drawable/state" />
+
+        <TextView
+            android:id="@+id/textViewEtats"
+            style="@style/TextActionBar"
+            android:text="@string/btn_etats" />
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            style="@style/NextActionBar"
+            android:onClick="click_Etats" />
+    </LinearLayout>
+
+    <!-- LAMPE -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <ImageView
+            android:id="@+id/ImageView06"
+            style="@style/ImageActionBar"
+            android:src="@drawable/lamp" />
+
+        <TextView
+            android:id="@+id/textViewLampe"
+            style="@style/TextActionBar"
+            android:text="@string/btn_Lampe" />
+
+        <ImageView
+            android:id="@+id/ImageView02"
+            style="@style/NextActionBar"
+            android:onClick="click_Lampe" />
+    </LinearLayout>
+
+    <!-- VOLET -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <ImageView
+            android:id="@+id/ImageShutter"
+            style="@style/ImageActionBar"
+            android:src="@drawable/shutter" />
+
+        <TextView
+            android:id="@+id/textViewVolet"
+            style="@style/TextActionBar"
+            android:text="@string/btn_volet" />
+
+        <ImageView
+            android:id="@+id/ImageView2"
+            style="@style/NextActionBar"
+            android:onClick="click_Volet" />
+    </LinearLayout>
+
+    <!-- Configuration -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <ImageView
+            android:id="@+id/ImageSettings"
+            style="@style/ImageActionBar"
+            android:src="@drawable/settings" />
+
+        <TextView
+            android:id="@+id/textView1"
+            style="@style/TextActionBar"
+            android:text="@string/btn_config" />
+
+        <ImageView
+            android:id="@+id/ImageView04"
+            style="@style/NextActionBar"
+            android:onClick="click_config" />
+    </LinearLayout>
+
+    <!-- BAS DE PAGE -->
+    <!-- BAS DE PAGE -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Background" >
+
+    <!-- STATUS BAR -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/StatusBar" >
+
+        <ImageView style="@style/RetourHome" />
+
+        <LinearLayout style="@style/BarStatusBar" />
+
+        <TextView
+            android:id="@+id/text_bar_Lampe"
+            style="@style/TextStatusBar"
+            android:text="@string/Configuration"
+            tools:context=".MainActivity" />
+
+        <LinearLayout style="@style/BarStatusBar" />
+    </LinearLayout>
+
+    <!-- Adresse IP -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <ImageView
+            android:id="@+id/ImageTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_weight="0"
+            android:src="@drawable/lamp" />
+
+        <TextView
+            android:id="@+id/ac_Configuration"
+            android:layout_width="145dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="@string/config_address_ip"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#2d4d70" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <ImageView
+            android:id="@+id/ImageTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:layout_weight="0"
+            android:src="@drawable/lamp" />
+
+        <EditText
+            android:id="@+id/edit_Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:ems="10"
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/Image_Edit_Address"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.77"
+            android:background="@null"
+            android:clickable="true"
+            android:onClick="onClick_Edit_Address"
+            android:src="@drawable/custom_btn" />
+    </LinearLayout>
+    <!-- BAS DE PAGE -->
+    <!-- BAS DE PAGE -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom" >
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android" />
+    </LinearLayout>
+
+</LinearLayout>
