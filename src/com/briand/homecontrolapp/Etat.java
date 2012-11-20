@@ -40,7 +40,7 @@ public class Etat extends Activity {
 			} else if (msg.what == 7) {
 				text7.setText(message7);
 			}
-			traitementDesDonnees();
+			//traitementDesDonnees();
 
 		};
 	};
@@ -58,7 +58,7 @@ public class Etat extends Activity {
 		text6 = (TextView) findViewById(R.id.valeur_etat_lightLevel);
 		text7 = (TextView) findViewById(R.id.valeur_etat_lightBrightness);
 		y = true;
-		traitementDesDonnees();
+		new traitementDesDonnees().start();
 
 	}
 
