@@ -105,19 +105,16 @@ public class MainActivity extends Activity {
 	/**
 	 * 
 	 */
-	private void traitementAutomatique() {
+	public class traitementAutomatique extends Thread {
 
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				while (x) {
-					Home_Control.autoShutterState();
-					Home_Control.autoLightLevel();
-					System.out.println("-----Traitement Automatique-----");
-				}
+		public void run() {
+			while (x) {
+				Home_Control.autoShutterState();
+				Home_Control.autoLightLevel();
+				System.out
+						.println("-----MAIN_ACTIVITY-----Traitement Automatique-----");
 			}
-		}).start();
+		}
 	}
 
 	// ///////////////////////////////////////////
