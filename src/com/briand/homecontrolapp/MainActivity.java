@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void onStop() {
-		Home_Control.run = false;
+//		Home_Control.run = false;
 		popUp("------ONSTOP------");
 		super.onStop();
 	}

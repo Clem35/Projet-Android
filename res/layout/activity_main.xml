@@ -9,8 +9,14 @@
         xmlns:tools="http://schemas.android.com/tools"
         style="@style/StatusBar" >
 
-        <ImageView style="@style/RetourHome" 
-            android:clickable="false"/>
+        <ImageView
+            android:id="@+id/RetourHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:clickable="false"
+            android:contentDescription="@string/desc"
+            android:src="@android:drawable/ic_menu_revert" />
 
         <LinearLayout style="@style/BarStatusBar" />
 
@@ -46,7 +52,8 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        style="@style/ActionBar" >
+        style="@style/ActionBar"
+        android:visibility="visible" >
 
         <ImageView
             android:id="@+id/ImageConsigne"
@@ -61,9 +68,7 @@
         <ImageView
             android:id="@+id/imageView1"
             style="@style/NextActionBar"
-         
             android:onClick="click_Consigne" />
-
     </LinearLayout>
 
     <!-- ETATS -->
