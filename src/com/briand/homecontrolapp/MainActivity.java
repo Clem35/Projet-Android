@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		overridePendingTransition(R.anim.wave_scale, R.anim.wave_scale); // Animation
 		setContentView(R.layout.activity_main);
+		// new Home_Control.traitementAuto().start();
 		Home_Control.traitementAuto();
 	}
 
@@ -40,18 +41,13 @@ public class MainActivity extends Activity {
 			bouton.setImageResource(R.drawable.redbutton);
 			bouton2.setClickable(false);
 			bouton2.setImageResource(R.drawable.redbutton);
-			traitementAutomatique();
-			// startService(new Intent(MainActivity.this,
-			// ServiceAutomatique.class));
+			new traitementAutomatique().start();
 		} else {
 			x = false;
 			bouton.setClickable(true);
 			bouton.setImageResource(R.drawable.custom_btn);
 			bouton2.setClickable(true);
 			bouton2.setImageResource(R.drawable.custom_btn);
-
-			// stopService(new Intent(MainActivity.this,
-			// ServiceAutomatique.class));
 		}
 	}
 
@@ -91,22 +87,31 @@ public class MainActivity extends Activity {
 		super.onRestart();
 	}
 
+	public void onDestroy() {
+		Home_Control.run = false;
+		popUp("------ONDESTROY------");
+		super.onDestroy();
+	}
+
+	public void onStop() {
+//		Home_Control.run = false;
+		popUp("------ONSTOP------");
+		super.onStop();
+	}
+
 	/**
 	 * 
 	 */
-	private void traitementAutomatique() {
+	public class traitementAutomatique extends Thread {
 
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				while (x) {
-					Home_Control.autoShutterState();
-					Home_Control.autoLightLevel();
-					System.out.println("-----Traitement Automatique-----");
-				}
+		public void run() {
+			while (x) {
+				Home_Control.autoShutterState();
+				Home_Control.autoLightLevel();
+				System.out
+						.println("-----MAIN_ACTIVITY-----Traitement Automatique-----");
 			}
-		}).start();
+		}
 	}
 
 	// ///////////////////////////////////////////

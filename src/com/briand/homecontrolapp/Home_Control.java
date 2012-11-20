@@ -7,10 +7,11 @@ import org.restlet.resource.ResourceException;
 
 public class Home_Control {
 
+	// Variables
 	public static int LightSetpoint = 400;
 	public static float temperatureSetpoint = 20;
 	public static boolean automatic = true;
-	public static String address = "localhost";
+	public static String address = "10.0.2.2";
 	public static int getLI = 0;
 	public static int getLE = 0;
 	public static float getTI = 0;
@@ -19,28 +20,135 @@ public class Home_Control {
 	public static boolean getW = false;
 	public static int getLL = 0;
 	public static int getLB = 0;
-	
-	
-	public static void traitementAuto() {
+	public static boolean run = true;
 
-		new Thread(new Runnable() {
+	/**
+	 * Thread permettant la mise a jour des variables continuellement
+	 */
+	public static class traitementAuto extends Thread {
 
-			@Override
-			public void run() {
-				while (true) {
-					getLI=getLightInt();
-					getLE=getLightExt();
-					getTI=getTempInt();
-					getTE=getTempExt();
-					getSS=getShutterState();
-					getW=getWeather();
-					getLL=getLampeLevel();
-					getLB=getLampeBrightness();
-					System.out.println("-----Traitement Getteurs -----");
-				}
+		public void run() {
+			while (run) {
+				getLI = getLightInt();
+				getLE = getLightExt();
+				getTI = getTempInt();
+				getTE = getTempExt();
+				getSS = getShutterState();
+				getW = getWeather();
+				getLL = getLampeLevel();
+				getLB = getLampeBrightness();
+				System.out
+						.println("HOME_CONTROL----------Traitement Getteurs ----------");
 			}
-		}).start();
+		}
 	}
+	
+	public static void traitementAuto(){
+		new traitementAutoLI().start();
+	//	new traitementAutoLE().start();
+	//	new traitementAutoTI().start();
+	//	new traitementAutoTE().start();
+		new traitementAutoW().start();
+	//	new traitementAutoSS().start();
+	//	new traitementAutoLL().start();
+	//	new traitementAutoLB().start();
+		
+	}
+	public static class traitementAutoLI extends Thread {
+
+		public void run() {
+			while (run) {
+				getLI = getLightInt();
+				getLE = getLightExt();
+				getTI = getTempInt();
+				getTE = getTempExt();
+				System.out
+						.println("HOME_CONTROL-----LI-------Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoLE extends Thread {
+
+		public void run() {
+			while (run) {
+				getLE = getLightExt();
+				System.out
+						.println("HOME_CONTROL-----LE-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoTI extends Thread {
+
+		public void run() {
+			while (run) {
+				getTI = getTempInt();
+				System.out
+						.println("HOME_CONTROL-----TI-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoTE extends Thread {
+
+		public void run() {
+			while (run) {
+				getTE = getTempExt();
+				System.out
+						.println("HOME_CONTROL-----TE-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoSS extends Thread {
+
+		public void run() {
+			while (run) {
+				getSS = getShutterState();
+				System.out
+						.println("HOME_CONTROL-----SS-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoW extends Thread {
+
+		public void run() {
+			while (run) {
+				getW = getWeather();
+				getSS = getShutterState();
+				getLB = getLampeBrightness();
+				getLL = getLampeLevel();
+				System.out
+						.println("HOME_CONTROL-----W-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoLL extends Thread {
+
+		public void run() {
+			while (run) {
+				getLL = getLampeLevel();
+				System.out
+						.println("HOME_CONTROL-----LL-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoLB extends Thread {
+
+		public void run() {
+			while (run) {
+				getLB = getLampeBrightness();
+				System.out
+						.println("HOME_CONTROL-----LB-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	
 
 	// /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -276,7 +384,11 @@ public class Home_Control {
 		return get_shutter_state;
 	}
 
+	// /////////////////////////////////////////////////////////////////////////////////////////////
+
 	// Modification de valeurs
+
+	// /////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * setLevelLight : Modifier le niveau de luminosité de la lampe (0 à 100%)
@@ -284,20 +396,21 @@ public class Home_Control {
 	 * @param valeur
 	 */
 	public static void setLevelLight(int valeur) {
+		if (valeur > 100)
+			valeur = 100;
+		if (valeur < 0)
+			valeur = 0;
 		ClientResource set_level_light = new ClientResource("http://" + address
 				+ ":9000/light?method=setLevel&level=" + valeur);
 		// Update value
 		set_level_light.get();
 		set_level_light.release();
-		getLL=valeur;
+		getLL = valeur;
 		System.out.println("------setLevelLight------ : " + valeur);
 	}
 
 	/**
 	 * pullUpShutter : Monter les volets
-	 * 
-	 * @throws IOException
-	 * @throws ResourceException
 	 */
 	public static void pullUpShutter() {
 		if (getShutterState() != 2) {
@@ -311,7 +424,7 @@ public class Home_Control {
 				e.printStackTrace();
 			}
 			updateShutter.release();
-			getSS=2;
+			getSS = 2;
 			System.out.println("------pullUpShutter------ : ");
 		}
 	}
@@ -334,7 +447,7 @@ public class Home_Control {
 				e.printStackTrace();
 			}
 			updateShutter.release();
-			getSS=0;
+			getSS = 0;
 			System.out.println("------pullDownShutter------ : ");
 		}
 	}
@@ -357,7 +470,7 @@ public class Home_Control {
 				e.printStackTrace();
 			}
 			updateShutter.release();
-			getSS=1;
+			getSS = 1;
 			System.out.println("------setIntermediateShutter------ : ");
 		}
 	}
@@ -388,14 +501,22 @@ public class Home_Control {
 		System.out.println("------setAutomatic------ : " + x);
 	}
 
+	/**
+	 * Mise a jour de l'adresse IP
+	 * 
+	 * @param x
+	 *            = nouvelle adresse ip
+	 */
 	public static void setAddressIP(String x) {
 		address = x;
 		System.out.println("------setIP------ : " + address);
 	}
 
-	// /////////////////////////
-	// //// PARTIE CALCUL //////
-	// /////////////////////////
+	// ////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// PARTIE CALCUL
+
+	// ////////////////////////////////////////////////////////////////////////////////////////////////
 
 	/**
 	 * Calcul automatique du niveau de l'ampoule
@@ -405,33 +526,13 @@ public class Home_Control {
 	 * @throws ResourceException
 	 * @throws IOException
 	 */
-	public static int autoLightLevel2() {
-		int LumExt = getLightExt();
-		int ShutterState = getShutterState();
-		int LightLevel;
-		double C;
-		// calcul des paramètres
-		if (ShutterState == 0) {
-			C = -LightSetpoint;
-			LightLevel = calculLightLevel(C);
-		} else if (ShutterState == 1) {
-			C = (LumExt / 2) - LightSetpoint;
-			LightLevel = calculLightLevel(C);
-		} else /* ShutterState==2 */{
-			C = LumExt - LightSetpoint;
-			LightLevel = calculLightLevel(C);
-		}
-		setLevelLight(LightLevel);
-		return LightLevel;
-
-	}
-
 	public static int autoLightLevel() {
 		int LumExt = getLE;
 		int ShutterState = getSS;
 		int LightLevel;
 		double C;
-		// calcul des paramètres
+		// calcul des paramètres afin de trouver la valeur du niveau de
+		// luminosité à mettre
 		if (ShutterState == 0) {
 			C = -LightSetpoint;
 			LightLevel = calculLightLevel(C);
@@ -446,6 +547,7 @@ public class Home_Control {
 		return LightLevel;
 
 	}
+
 	/**
 	 * calcul de X (valeur du niveau de l'eclairage) d'une équation second degré
 	 * 
@@ -455,8 +557,10 @@ public class Home_Control {
 	public static int calculLightLevel(double C) {
 		int X;
 		double A = 0.0501;
-		double B = -0.0111;
+		double B = -0.0132;
 		double delta;
+		if (C == 0)
+			return 0;
 		delta = ((B * B) - (4 * A * C));
 		if (delta < 0) {
 			return 0;
@@ -671,117 +775,13 @@ public class Home_Control {
 	// }
 
 	/**
-	 * autoShutterState2 : Calcul automatique de la position du volet
+	 * autoShutterState : Calcul automatique de la position du volet
 	 * 
 	 * @throws ResourceException
 	 * @throws IOException
 	 */
-	public static void autoShutterState2() {
-		int lightExt = getLightExt();
-		// int lightInt = getLightInt();
-		float tempInt = getTempInt();
-		float tempExt = getTempExt();
-		boolean weather = getWeather();
-
-		if (lightExt >= LightSetpoint) {
-			if (tempExt > 25) {
-				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullDownShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
-				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
-				}
-			} else if (tempExt <= 25 && tempExt >= temperatureSetpoint) {
-				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
-				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
-				}
-			} else if (tempExt < temperatureSetpoint) {
-				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
-				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
-				}
-			}
-
-		} else if (lightExt < LightSetpoint && lightExt >= 50) {
-
-			if (tempExt > 25) {
-				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullDownShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
-				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
-				}
-			} else if (tempExt <= 25 && tempExt >= temperatureSetpoint) {
-				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
-				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
-				}
-			} else if (tempExt < temperatureSetpoint) {
-				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullDownShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
-				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullDownShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
-				}
-			}
-
-		} else if (lightExt < 50) {
-			pullDownShutter();
-		}
-	}
-	//methode rapide
 	public static void autoShutterState() {
 		int lightExt = getLE;
-		// int lightInt = getLightInt();
 		float tempInt = getTI;
 		float tempExt = getTE;
 		boolean weather = getW;
