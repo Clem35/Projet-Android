@@ -26,6 +26,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		overridePendingTransition(R.anim.wave_scale, R.anim.wave_scale); // Animation
 		setContentView(R.layout.activity_main);
+		// new Home_Control.traitementAuto().start();
 		Home_Control.traitementAuto();
 	}
 
