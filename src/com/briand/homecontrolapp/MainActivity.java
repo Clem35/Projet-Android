@@ -42,17 +42,12 @@ public class MainActivity extends Activity {
 			bouton2.setClickable(false);
 			bouton2.setImageResource(R.drawable.redbutton);
 			new traitementAutomatique().start();
-			// startService(new Intent(MainActivity.this,
-			// ServiceAutomatique.class));
 		} else {
 			x = false;
 			bouton.setClickable(true);
 			bouton.setImageResource(R.drawable.custom_btn);
 			bouton2.setClickable(true);
 			bouton2.setImageResource(R.drawable.custom_btn);
-
-			// stopService(new Intent(MainActivity.this,
-			// ServiceAutomatique.class));
 		}
 	}
 
@@ -99,7 +94,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void onStop() {
-		// Home_Control.run=false;
+		Home_Control.run = false;
 		popUp("------ONSTOP------");
 		super.onStop();
 	}
