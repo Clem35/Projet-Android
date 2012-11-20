@@ -40,7 +40,7 @@ public class Etat extends Activity {
 			} else if (msg.what == 7) {
 				text7.setText(message7);
 			}
-			//traitementDesDonnees();
+			// traitementDesDonnees;
 
 		};
 	};
@@ -79,7 +79,8 @@ public class Etat extends Activity {
 	}
 
 	public void onClickEtat(View view) {
-		//traitementDesDonnees();
+		// traitementDesDonnees;
+
 	}
 
 	public static class traitementDesDonnees extends Thread {
