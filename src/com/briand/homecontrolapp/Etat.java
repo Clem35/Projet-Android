@@ -11,11 +11,12 @@ import android.widget.Toast;
 
 public class Etat extends Activity {
 
-	TextView text, text1, text2, text3, text4, text5, text6, text7;
+	private static TextView text, text1, text2, text3, text4, text5, text6,
+			text7;
 	private static String message, message1, message2, message3, message4,
 			message5, message6, message7;
-	private int x = 0;
-	private boolean y = true;
+	private static int x = 0;
+	private static boolean y = true;
 	Thread thread;
 
 	private Handler handler = new Handler() {
