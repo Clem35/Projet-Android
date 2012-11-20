@@ -40,11 +40,11 @@
         <Switch
             android:id="@+id/switch1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:onClick="automatic_Mode"
             android:text="@string/switch1"
-            android:textColor="#2d4d70" />
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
     <!-- Consignes -->
@@ -172,7 +172,7 @@
         android:gravity="bottom" >
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageAndroidBas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/android" />

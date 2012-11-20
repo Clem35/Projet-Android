@@ -1,12 +1,15 @@
 package com.briand.homecontrolapp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -15,6 +18,8 @@ public class MainActivity extends Activity {
 	String clickable;
 	private static ImageView bouton, bouton2;
 	private static boolean x = false;
+	private static boolean weather = true;
+	private static ImageView meteo;
 
 	// evenements
 	public void popUp(String message) {
@@ -26,8 +31,10 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		overridePendingTransition(R.anim.wave_scale, R.anim.wave_scale); // Animation
 		setContentView(R.layout.activity_main);
+		meteo = (ImageView) findViewById(R.id.imageAndroidBas);
 		// new Home_Control.traitementAuto().start();
 		Home_Control.traitementAuto();
+		new traitementMeteo().start();
 	}
 
 	public void automatic_Mode(View view) {
@@ -48,6 +55,41 @@ public class MainActivity extends Activity {
 			bouton.setImageResource(R.drawable.custom_btn);
 			bouton2.setClickable(true);
 			bouton2.setImageResource(R.drawable.custom_btn);
+		}
+	}
+
+	private static Handler handler = new Handler() {
+
+		@SuppressLint("NewApi")
+		public void handleMessage(android.os.Message msg) {
+			if (msg.what == 0) {
+				meteo.setImageResource(R.drawable.android_soleil);
+				System.out.println("SOLEILSOLEILSOLEILSOLEILSOLEILSOLEIL");
+			} else if (msg.what == 1) {
+				meteo.setImageResource(R.drawable.android_pluie);
+				System.out.println("PLUIEPLUIEPLUIEPLUIEPLUIE");
+			}
+
+		};
+	};
+
+	public static class traitementMeteo extends Thread {
+		public void run() {
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			while (true) {
+				weather = Home_Control.getW;
+				System.out.println("|||||=======TRAITEMENT METEO =====|||||"
+						+ weather);
+				if (weather)
+					handler.sendEmptyMessage(0);
+				if (!weather)
+					handler.sendEmptyMessage(1);
+			}
 		}
 	}
 
@@ -94,7 +136,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void onStop() {
-//		Home_Control.run = false;
+		// Home_Control.run = false;
 		popUp("------ONSTOP------");
 		super.onStop();
 	}

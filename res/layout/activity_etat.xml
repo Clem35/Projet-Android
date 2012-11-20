@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/Background"
-    android:layout_height="wrap_content" >
+    android:layout_height="match_parent" >
 
     <!-- STATUS BAR -->
 
@@ -25,8 +25,8 @@
         <ImageView
             android:id="@+id/Resfresh"
             android:layout_width="fill_parent"
-            android:layout_gravity="center_vertical|right"
             android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|right"
             android:layout_margin="3dp"
             android:clickable="true"
             android:onClick="onClickEtat"
@@ -36,211 +36,211 @@
     <!-- BODY -->
     <!-- Température intérieure -->
 
-    <LinearLayout
+    <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        style="@style/ActionBar" >
+        android:layout_width="fill_parent"
+        android:layout_height="342dp" >
 
-        <ImageView
-            android:id="@+id/ImageTemp"
-            style="@style/ImageActionBar"
-            android:src="@drawable/temp" />
-
-        <TextView
-            android:id="@+id/ac_etat_tempInt"
-            style="@style/TextActionBar"
-            
-            android:text="@string/etat_tempInt" />
-
-        <TextView
-            android:id="@+id/valeur_etat_tempInt"
-            style="@style/TextActionBar2"
-            android:text="@string/valeur_tempInt" />
-    </LinearLayout>
-
-    <!-- Température extérieure -->
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        style="@style/ActionBar" >
-
-        <ImageView
-            android:id="@+id/ImageTemp2"
-            style="@style/ImageActionBar"
-            android:src="@drawable/temp" />
-
-        <TextView
-            android:id="@+id/ac_etat_tempExt"
-            style="@style/TextActionBar"
-            
-            android:text="@string/etat_tempExt" />
-
-        <TextView
-            android:id="@+id/valeur_etat_tempExt"
-            style="@style/TextActionBar2"
-            android:text="@string/valeur_tempExt" />
-    </LinearLayout>
-    <!-- Luminosité intérieure -->
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        style="@style/ActionBar" >
-
-        <ImageView
-            android:id="@+id/ImageView09"
-            style="@style/ImageActionBar"
-            android:src="@drawable/lamp" />
-
-        <TextView
-            android:id="@+id/ac_etat_lightInt"
-            style="@style/TextActionBar"
-           
-          
-            android:text="@string/etat_lightInt" />
-
-        <TextView
-            android:id="@+id/valeur_etat_lightInt"
-            style="@style/TextActionBar2"
-            android:text="@string/valeur_lightInt" />
-    </LinearLayout>
-    <!-- Luminosité extérieure -->
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        style="@style/ActionBar" >
-
-        <ImageView
-            android:id="@+id/ImageView09"
-            style="@style/ImageActionBar"
-            android:src="@drawable/lamp" />
-
-        <TextView
-            android:id="@+id/ac_etat_lightExt"
-            style="@style/TextActionBar"
-          
-    
-            android:text="@string/etat_lightExt" />
-
-        <TextView
-            android:id="@+id/valeur_etat_lightExt"
-            style="@style/TextActionBar2"
-            android:text="@string/valeur_lightExt" />
-    </LinearLayout>
-    <!-- METEO -->
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        style="@style/ActionBar" >
-
-        <ImageView
-            android:id="@+id/ImageWeather"
-            style="@style/ImageActionBar"
-            
-            android:src="@drawable/weather" />
-
-        <TextView
-            android:id="@+id/ac_etat_meteo"
-            style="@style/TextActionBar"
-         
-            android:text="@string/etat_meteo" />
-
-        <TextView
-            android:id="@+id/valeur_etat_meteo"
-            style="@style/TextActionBar2"
-  
-            android:text="@string/valeur_meteo" />
-
-    </LinearLayout>
-
-    <!-- Position Volet -->
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        style="@style/ActionBar" >
-
-        <ImageView
-            android:id="@+id/ImageShutter2"
-            style="@style/ImageActionBar"
-            android:src="@drawable/shutter" />
-
-        <TextView
-            android:id="@+id/ac_etat_PositionVolet"
-            style="@style/TextActionBar"
-        
-         
-            android:text="@string/etat_positionVolet" />
-
-        <TextView
-            android:id="@+id/valeur_etat_PositionVolet"
-            style="@style/TextActionBar2"
-            android:text="@string/valeur_positionVolet" />
-    </LinearLayout>
-
-    <!-- Niveau de lumiere -->
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        style="@style/ActionBar" >
-
-        <ImageView
-            android:id="@+id/Imagef"
-            style="@style/ImageActionBar"
-            android:src="@drawable/lamp" />
-
-        <TextView
-            android:id="@+id/ac_etat_lightLevel"
-            style="@style/TextActionBar"
-            
-    
-            android:text="@string/etat_lightLevel" />
-
-        <TextView
-            android:id="@+id/valeur_etat_lightLevel"
-            style="@style/TextActionBar2"
-            android:text="@string/valeur_lightLevel" />
-    </LinearLayout>
-
-    <!-- Puissance lampe -->
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        style="@style/ActionBar" >
-
-        <ImageView
-            android:id="@+id/ImageView09"
-            style="@style/ImageActionBar"
-            android:src="@drawable/lamp" />
-
-        <TextView
-            android:id="@+id/ac_etat_lightBrightness"
-            style="@style/TextActionBar"
-            android:text="@string/etat_lightBrightness" />
-
-        <TextView
-            android:id="@+id/valeur_etat_lightBrightness"
-            style="@style/TextActionBar2"
-            android:text="@string/valeur_lightBrightness" />
-    </LinearLayout>
-    <!-- BAS DE PAGE -->
-    <!-- BAS DE PAGE -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom" >
-
-        <ImageView
-            android:id="@+id/imageView3"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/android" />
-    </LinearLayout>
+            android:layout_height="342dp"
+            android:orientation="vertical" >
 
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/ActionBar" >
+
+                <ImageView
+                    android:id="@+id/ImageTemp"
+                    style="@style/ImageActionBar"
+                    android:src="@drawable/temp" />
+
+                <TextView
+                    android:id="@+id/ac_etat_tempInt"
+                    style="@style/TextActionBar"
+                    android:text="@string/etat_tempInt" />
+
+                <TextView
+                    android:id="@+id/valeur_etat_tempInt"
+                    style="@style/TextActionBar2"
+                    android:text="@string/valeur_tempInt" />
+            </LinearLayout>
+
+            <!-- Température extérieure -->
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/ActionBar" >
+
+                <ImageView
+                    android:id="@+id/ImageTemp2"
+                    style="@style/ImageActionBar"
+                    android:src="@drawable/temp" />
+
+                <TextView
+                    android:id="@+id/ac_etat_tempExt"
+                    style="@style/TextActionBar"
+                    android:text="@string/etat_tempExt" />
+
+                <TextView
+                    android:id="@+id/valeur_etat_tempExt"
+                    style="@style/TextActionBar2"
+                    android:text="@string/valeur_tempExt" />
+            </LinearLayout>
+            <!-- Luminosité intérieure -->
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/ActionBar" >
+
+                <ImageView
+                    android:id="@+id/ImageView09"
+                    style="@style/ImageActionBar"
+                    android:src="@drawable/lamp" />
+
+                <TextView
+                    android:id="@+id/ac_etat_lightInt"
+                    style="@style/TextActionBar"
+                    android:text="@string/etat_lightInt" />
+
+                <TextView
+                    android:id="@+id/valeur_etat_lightInt"
+                    style="@style/TextActionBar2"
+                    android:text="@string/valeur_lightInt" />
+            </LinearLayout>
+            <!-- Luminosité extérieure -->
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/ActionBar" >
+
+                <ImageView
+                    android:id="@+id/ImageView09"
+                    style="@style/ImageActionBar"
+                    android:src="@drawable/lamp" />
+
+                <TextView
+                    android:id="@+id/ac_etat_lightExt"
+                    style="@style/TextActionBar"
+                    android:text="@string/etat_lightExt" />
+
+                <TextView
+                    android:id="@+id/valeur_etat_lightExt"
+                    style="@style/TextActionBar2"
+                    android:text="@string/valeur_lightExt" />
+            </LinearLayout>
+            <!-- METEO -->
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/ActionBar" >
+
+                <ImageView
+                    android:id="@+id/ImageWeather"
+                    style="@style/ImageActionBar"
+                    android:src="@drawable/weather" />
+
+                <TextView
+                    android:id="@+id/ac_etat_meteo"
+                    style="@style/TextActionBar"
+                    android:text="@string/etat_meteo" />
+
+                <TextView
+                    android:id="@+id/valeur_etat_meteo"
+                    style="@style/TextActionBar2"
+                    android:text="@string/valeur_meteo" />
+            </LinearLayout>
+
+            <!-- Position Volet -->
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/ActionBar" >
+
+                <ImageView
+                    android:id="@+id/ImageShutter2"
+                    style="@style/ImageActionBar"
+                    android:src="@drawable/shutter" />
+
+                <TextView
+                    android:id="@+id/ac_etat_PositionVolet"
+                    style="@style/TextActionBar"
+                    android:text="@string/etat_positionVolet" />
+
+                <TextView
+                    android:id="@+id/valeur_etat_PositionVolet"
+                    style="@style/TextActionBar2"
+                    android:text="@string/valeur_positionVolet" />
+            </LinearLayout>
+
+            <!-- Niveau de lumiere -->
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/ActionBar" >
+
+                <ImageView
+                    android:id="@+id/Imagef"
+                    style="@style/ImageActionBar"
+                    android:src="@drawable/lamp" />
+
+                <TextView
+                    android:id="@+id/ac_etat_lightLevel"
+                    style="@style/TextActionBar"
+                    android:text="@string/etat_lightLevel" />
+
+                <TextView
+                    android:id="@+id/valeur_etat_lightLevel"
+                    style="@style/TextActionBar2"
+                    android:text="@string/valeur_lightLevel" />
+            </LinearLayout>
+
+            <!-- Puissance lampe -->
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                style="@style/ActionBar" >
+
+                <ImageView
+                    android:id="@+id/ImageView09"
+                    style="@style/ImageActionBar"
+                    android:src="@drawable/lamp" />
+
+                <TextView
+                    android:id="@+id/ac_etat_lightBrightness"
+                    style="@style/TextActionBar"
+                    android:text="@string/etat_lightBrightness" />
+
+                <TextView
+                    android:id="@+id/valeur_etat_lightBrightness"
+                    style="@style/TextActionBar2"
+                    android:text="@string/valeur_lightBrightness" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+<!-- BAS DE PAGE -->
+<!-- BAS DE PAGE -->
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom" >
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/android" />
+</LinearLayout>
 </LinearLayout>
