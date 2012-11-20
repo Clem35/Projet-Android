@@ -11,7 +11,7 @@ public class Home_Control {
 	public static int LightSetpoint = 400;
 	public static float temperatureSetpoint = 20;
 	public static boolean automatic = true;
-	public static String address = "localhost";
+	public static String address = "10.0.2.2";
 	public static int getLI = 0;
 	public static int getLE = 0;
 	public static float getTI = 0;
@@ -20,30 +20,135 @@ public class Home_Control {
 	public static boolean getW = false;
 	public static int getLL = 0;
 	public static int getLB = 0;
+	public static boolean run = true;
 
 	/**
 	 * Thread permettant la mise a jour des variables continuellement
 	 */
-	public static void traitementAuto() {
+	public static class traitementAuto extends Thread {
 
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				while (true) {
-					getLI = getLightInt();
-					getLE = getLightExt();
-					getTI = getTempInt();
-					getTE = getTempExt();
-					getSS = getShutterState();
-					getW = getWeather();
-					getLL = getLampeLevel();
-					getLB = getLampeBrightness();
-					System.out.println("-----Traitement Getteurs -----");
-				}
+		public void run() {
+			while (run) {
+				getLI = getLightInt();
+				getLE = getLightExt();
+				getTI = getTempInt();
+				getTE = getTempExt();
+				getSS = getShutterState();
+				getW = getWeather();
+				getLL = getLampeLevel();
+				getLB = getLampeBrightness();
+				System.out
+						.println("HOME_CONTROL----------Traitement Getteurs ----------");
 			}
-		}).start();
+		}
 	}
+	
+	public static void traitementAuto(){
+		new traitementAutoLI().start();
+	//	new traitementAutoLE().start();
+	//	new traitementAutoTI().start();
+	//	new traitementAutoTE().start();
+		new traitementAutoW().start();
+	//	new traitementAutoSS().start();
+	//	new traitementAutoLL().start();
+	//	new traitementAutoLB().start();
+		
+	}
+	public static class traitementAutoLI extends Thread {
+
+		public void run() {
+			while (run) {
+				getLI = getLightInt();
+				getLE = getLightExt();
+				getTI = getTempInt();
+				getTE = getTempExt();
+				System.out
+						.println("HOME_CONTROL-----LI-------Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoLE extends Thread {
+
+		public void run() {
+			while (run) {
+				getLE = getLightExt();
+				System.out
+						.println("HOME_CONTROL-----LE-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoTI extends Thread {
+
+		public void run() {
+			while (run) {
+				getTI = getTempInt();
+				System.out
+						.println("HOME_CONTROL-----TI-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoTE extends Thread {
+
+		public void run() {
+			while (run) {
+				getTE = getTempExt();
+				System.out
+						.println("HOME_CONTROL-----TE-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoSS extends Thread {
+
+		public void run() {
+			while (run) {
+				getSS = getShutterState();
+				System.out
+						.println("HOME_CONTROL-----SS-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoW extends Thread {
+
+		public void run() {
+			while (run) {
+				getW = getWeather();
+				getSS = getShutterState();
+				getLB = getLampeBrightness();
+				getLL = getLampeLevel();
+				System.out
+						.println("HOME_CONTROL-----W-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoLL extends Thread {
+
+		public void run() {
+			while (run) {
+				getLL = getLampeLevel();
+				System.out
+						.println("HOME_CONTROL-----LL-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	public static class traitementAutoLB extends Thread {
+
+		public void run() {
+			while (run) {
+				getLB = getLampeBrightness();
+				System.out
+						.println("HOME_CONTROL-----LB-----Traitement Getteurs ----------");
+			}
+		}
+	}
+
+	
 
 	// /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -454,7 +559,7 @@ public class Home_Control {
 		double A = 0.0501;
 		double B = -0.0132;
 		double delta;
-		if (C==0)
+		if (C == 0)
 			return 0;
 		delta = ((B * B) - (4 * A * C));
 		if (delta < 0) {
