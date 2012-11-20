@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 			bouton.setImageResource(R.drawable.redbutton);
 			bouton2.setClickable(false);
 			bouton2.setImageResource(R.drawable.redbutton);
-			traitementAutomatique();
+			new traitementAutomatique().start();
 			// startService(new Intent(MainActivity.this,
 			// ServiceAutomatique.class));
 		} else {
@@ -91,14 +91,15 @@ public class MainActivity extends Activity {
 
 		super.onRestart();
 	}
-	
+
 	public void onDestroy() {
-		Home_Control.run=false;
+		Home_Control.run = false;
 		popUp("------ONDESTROY------");
 		super.onDestroy();
 	}
+
 	public void onStop() {
-	//	Home_Control.run=false;
+		// Home_Control.run=false;
 		popUp("------ONSTOP------");
 		super.onStop();
 	}
