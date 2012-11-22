@@ -18,6 +18,7 @@ public class Etat extends Activity {
 	private static int x = 0;
 	private static boolean y = true;
 	Thread thread;
+	String languesDef ="";
 
 	private static Handler handler = new Handler() {
 

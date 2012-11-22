@@ -47,7 +47,7 @@
             android:gravity="center"
             android:text="@string/config_address_ip"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#2d4d70" />
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
@@ -70,7 +70,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:textColor="#FFFFFF" 
+            android:shadowColor="#FFFFFF"
+            android:textColorHighlight="#96b327"
+            android:textColorHint="#FFFFFF"/>
 
         <ImageView
             android:id="@+id/Image_Edit_Address"

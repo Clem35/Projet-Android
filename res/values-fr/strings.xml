@@ -1,0 +1,62 @@
+<resources>
+
+    <string name="Accueil">ACCUEIL</string>
+    <string name="app_name">HomeControlApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="retour">&lt;</string>
+    <string name="switch1">Mode Automatique</string>
+
+    <drawable name="btnretour">#242223</drawable>
+
+    <string name="btn_etats">ETATS</string>
+    <string name="btn_consignes">CONSIGNES</string>
+    <string name="btn_volet">VOLET</string>
+    <string name="btn_Lampe">LAMPE</string>
+    <string name="btn_config">CONFIGURATION</string>
+    <string name="click_Consigne">click</string>
+    <string name="title_activity_consigne">Consigne</string>
+    <string name="title_activity_etat">Etat</string>
+    <string name="title_activity_lampe">Lampe</string>
+     <string name="title_activity_configuration">Configuration</string>
+    <string name="title_activity_volet">Volet</string>
+    <string name="Consigne">CONSIGNES</string>
+    <string name="Etat">ETATS</string>
+    <string name="Lampe">LAMPE</string>
+    <string name="Configuration">Configuration</string>
+    <string name="Volet">VOLET</string>
+    <string name="consigne_Temp">Température</string>
+    <string name="consigne_Light">Luminosité</string>
+
+    <!-- VALEURS ETATS_______Activity_etat -->
+    <string name="valeur_tempInt">xx°</string>
+    <string name="valeur_tempExt">xx°</string>
+    <string name="valeur_meteo">xxx</string>
+    <string name="valeur_lightInt">xxx lux</string>
+    <string name="valeur_lightExt">xxx lux</string>
+    <string name="valeur_positionVolet">xxx</string>
+    <string name="valeur_lightLevel">xxx %</string>
+    <string name="valeur_lightBrightness">xxx lux</string>
+
+    <!-- Etat________Activity_etat -->
+    <string name="etat_tempInt">Température Int.</string>
+    <string name="etat_tempExt">Température Ext.</string>
+    <string name="etat_meteo">Météo</string>
+    <string name="etat_lightInt">Luminosité Int.</string>
+    <string name="etat_lightExt">Luminosité Ext.</string>
+    <string name="etat_positionVolet">Position Volet</string>
+    <string name="etat_lightLevel">Niveau Ecl.</string>
+    <string name="etat_lightBrightness">Puissance lampe</string>
+
+    <!-- Lampe -->
+    <string name="lampe_intensite">Intensité</string>
+
+    <!-- Volet -->
+    <string name="volet_state">Position volet</string>
+    
+    <string name="config_address_ip">Adresse IP</string>
+    
+    <string name="desc">image</string>
+
+</resources>

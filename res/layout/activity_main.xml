@@ -44,7 +44,8 @@
             android:gravity="center"
             android:onClick="automatic_Mode"
             android:text="@string/switch1"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#96b327" />
     </LinearLayout>
 
     <!-- Consignes -->

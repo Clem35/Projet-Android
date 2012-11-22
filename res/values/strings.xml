@@ -6,28 +6,28 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="retour">&lt;</string>
-    <string name="switch1">Mode Automatique</string>
+    <string name="switch1">Automatic Mode</string>
 
     <drawable name="btnretour">#242223</drawable>
 
-    <string name="btn_etats">ETATS</string>
-    <string name="btn_consignes">CONSIGNES</string>
-    <string name="btn_volet">VOLET</string>
-    <string name="btn_Lampe">LAMPE</string>
-    <string name="btn_config">CONFIGURATION</string>
+    <string name="btn_etats">STATES</string>
+    <string name="btn_consignes">SETPOINTS</string>
+    <string name="btn_volet">SHUTTER</string>
+    <string name="btn_Lampe">LIGHT</string>
+    <string name="btn_config">SETUP</string>
     <string name="click_Consigne">click</string>
-    <string name="title_activity_consigne">Consigne</string>
-    <string name="title_activity_etat">Etat</string>
-    <string name="title_activity_lampe">Lampe</string>
-     <string name="title_activity_configuration">Configuration</string>
-    <string name="title_activity_volet">Volet</string>
-    <string name="Consigne">CONSIGNES</string>
-    <string name="Etat">ETATS</string>
-    <string name="Lampe">LAMPE</string>
-    <string name="Configuration">Configuration</string>
-    <string name="Volet">VOLET</string>
-    <string name="consigne_Temp">Tempétature</string>
-    <string name="consigne_Light">Luminosité</string>
+    <string name="title_activity_consigne">Setpoints</string>
+    <string name="title_activity_etat">States</string>
+    <string name="title_activity_lampe">Light</string>
+     <string name="title_activity_configuration">Setup</string>
+    <string name="title_activity_volet">Shutter</string>
+    <string name="Consigne">SETPOINTS</string>
+    <string name="Etat">STATES</string>
+    <string name="Lampe">LIGHT</string>
+    <string name="Configuration">SETUP</string>
+    <string name="Volet">SHUTTER</string>
+    <string name="consigne_Temp">Temperature</string>
+    <string name="consigne_Light">Brightness</string>
 
     <!-- VALEURS ETATS_______Activity_etat -->
     <string name="valeur_tempInt">xx°</string>
@@ -40,22 +40,22 @@
     <string name="valeur_lightBrightness">xxx lux</string>
 
     <!-- Etat________Activity_etat -->
-    <string name="etat_tempInt">Température Int.</string>
-    <string name="etat_tempExt">Température Ext.</string>
-    <string name="etat_meteo">Météo</string>
-    <string name="etat_lightInt">Luminosité Int.</string>
-    <string name="etat_lightExt">Luminosité Ext.</string>
-    <string name="etat_positionVolet">Position Volet</string>
-    <string name="etat_lightLevel">Niveau Ecl.</string>
-    <string name="etat_lightBrightness">Puissance lampe</string>
+    <string name="etat_tempInt">Inside Temperature</string>
+    <string name="etat_tempExt">Outside Temperature</string>
+    <string name="etat_meteo">Weather</string>
+    <string name="etat_lightInt">Inside Brightness</string>
+    <string name="etat_lightExt">Outside Brightness</string>
+    <string name="etat_positionVolet">Shutter Position</string>
+    <string name="etat_lightLevel">Light Level</string>
+    <string name="etat_lightBrightness">Light Wattage</string>
 
     <!-- Lampe -->
-    <string name="lampe_intensite">Intensité</string>
+    <string name="lampe_intensite">Brightness</string>
 
     <!-- Volet -->
-    <string name="volet_state">Position volet</string>
+    <string name="volet_state">Shutter Position</string>
     
-    <string name="config_address_ip">Adresse IP</string>
+    <string name="config_address_ip">IP Adress</string>
     
     <string name="desc">image</string>
 
