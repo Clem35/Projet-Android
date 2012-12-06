@@ -22,9 +22,8 @@
         <LinearLayout style="@style/BarStatusBar" />
     </LinearLayout>
 
-
-    
     <!-- BODY -->
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -36,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
             android:layout_weight="0"
-            android:src="@drawable/lamp" />
+            android:src="@drawable/temp" />
 
         <TextView
             android:id="@+id/textViewConsigne_Temp"
@@ -50,24 +49,31 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF" />
 
-        <EditText
+        <TextView
             android:id="@+id/edit_Temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:ems="3"
-            android:inputType="numberDecimal"
-            android:textColor="#FFFFFF" />
-
-        <ImageView
-            android:id="@+id/Image_Edit_Temperature"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.77"
-            android:background="@null"
-            android:clickable="true"
-            android:onClick="onClick_Edit_Temperature"
-            android:src="@drawable/custom_btn" />
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="@string/editTemp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <!-- ScrollView -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <SeekBar
+            android:id="@+id/seekBar_Temp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:max="300"
+            android:progress="0"
+            android:secondaryProgress="2" />
     </LinearLayout>
 
     <LinearLayout
@@ -95,24 +101,31 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF" />
 
-        <EditText
+        <TextView
             android:id="@+id/edit_Light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:ems="3"
-            android:inputType="number"
-            android:textColor="#FFFFFF" />
-
-        <ImageView
-            android:id="@+id/Image_Edit_Light"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.77"
-            android:background="@null"
-            android:clickable="true"
-            android:onClick="onClick_Edit_Light"
-            android:src="@drawable/custom_btn" />
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="@string/editLight"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <!-- ScrollView -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+        <SeekBar
+            android:id="@+id/seekBar_Light"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:max="1000"
+            android:progress="0"
+            android:secondaryProgress="2" />
     </LinearLayout>
 
     <!-- BAS DE PAGE -->

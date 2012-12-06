@@ -64,10 +64,10 @@ public class MainActivity extends Activity {
 		public void handleMessage(android.os.Message msg) {
 			if (msg.what == 0) {
 				meteo.setImageResource(R.drawable.android_soleil);
-				System.out.println("SOLEILSOLEILSOLEILSOLEILSOLEILSOLEIL");
+			//	System.out.println("SOLEILSOLEILSOLEILSOLEILSOLEILSOLEIL");
 			} else if (msg.what == 1) {
 				meteo.setImageResource(R.drawable.android_pluie);
-				System.out.println("PLUIEPLUIEPLUIEPLUIEPLUIE");
+			//	System.out.println("PLUIEPLUIEPLUIEPLUIEPLUIE");
 			}
 
 		};
@@ -83,8 +83,8 @@ public class MainActivity extends Activity {
 			}
 			while (true) {
 				weather = Home_Control.getW;
-				System.out.println("|||||=======TRAITEMENT METEO =====|||||"
-						+ weather);
+//				System.out.println("|||||=======TRAITEMENT METEO =====|||||"
+//						+ weather);
 				if (weather)
 					handler.sendEmptyMessage(0);
 				if (!weather)

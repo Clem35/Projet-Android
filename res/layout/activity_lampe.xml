@@ -47,25 +47,33 @@
             android:gravity="center"
             android:text="@string/lampe_intensite"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#2d4d70" />
+            android:textColor="#FFFFFF" />
 
-        <EditText
+        <TextView
             android:id="@+id/edit_Intensite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:ems="3"
-            android:inputType="numberDecimal" />
-
-        <ImageView
-            android:id="@+id/Image_Edit_Intensite"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.77"
-            android:background="@null"
-            android:clickable="true"
-            android:onClick="onClick_Edit_Intensite"
-            android:src="@drawable/custom_btn" />
+            android:layout_weight="0"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/Brigthness"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+    
+    <!-- ScrollView -->
+     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="@style/ActionBar" >
+
+       <SeekBar
+                android:id="@+id/seekBar1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:max="100"
+                android:progress="1"
+                android:secondaryProgress="2" />
+       
     </LinearLayout>
     <!-- BAS DE PAGE -->
     <!-- BAS DE PAGE -->

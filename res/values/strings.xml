@@ -1,12 +1,15 @@
 <resources>
 
-    <string name="Accueil">ACCUEIL</string>
+    <string name="Accueil">HOME</string>
     <string name="app_name">HomeControlApp</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="retour">&lt;</string>
     <string name="switch1">Automatic Mode</string>
+    <string name="Brigthness"></string>
+    <string name="editTemp"></string>
+    <string name="editLight"></string>
 
     <drawable name="btnretour">#242223</drawable>
 
@@ -19,7 +22,7 @@
     <string name="title_activity_consigne">Setpoints</string>
     <string name="title_activity_etat">States</string>
     <string name="title_activity_lampe">Light</string>
-     <string name="title_activity_configuration">Setup</string>
+    <string name="title_activity_configuration">Setup</string>
     <string name="title_activity_volet">Shutter</string>
     <string name="Consigne">SETPOINTS</string>
     <string name="Etat">STATES</string>
@@ -54,9 +57,7 @@
 
     <!-- Volet -->
     <string name="volet_state">Shutter Position</string>
-    
     <string name="config_address_ip">IP Adress</string>
-    
     <string name="desc">image</string>
 
 </resources>

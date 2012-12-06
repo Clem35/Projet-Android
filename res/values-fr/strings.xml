@@ -7,6 +7,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="retour">&lt;</string>
     <string name="switch1">Mode Automatique</string>
+    <string name="Brigthness"> </string>
 
     <drawable name="btnretour">#242223</drawable>
 
@@ -19,7 +20,7 @@
     <string name="title_activity_consigne">Consigne</string>
     <string name="title_activity_etat">Etat</string>
     <string name="title_activity_lampe">Lampe</string>
-     <string name="title_activity_configuration">Configuration</string>
+    <string name="title_activity_configuration">Configuration</string>
     <string name="title_activity_volet">Volet</string>
     <string name="Consigne">CONSIGNES</string>
     <string name="Etat">ETATS</string>
@@ -54,9 +55,7 @@
 
     <!-- Volet -->
     <string name="volet_state">Position volet</string>
-    
     <string name="config_address_ip">Adresse IP</string>
-    
     <string name="desc">image</string>
 
 </resources>

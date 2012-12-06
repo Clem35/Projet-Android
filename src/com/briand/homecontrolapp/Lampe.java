@@ -1,43 +1,64 @@
 package com.briand.homecontrolapp;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class Lampe extends Activity {
+public class Lampe extends Activity implements SeekBar.OnSeekBarChangeListener {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-		 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);  //Animation
-        setContentView(R.layout.activity_lampe);
-    }
-    
-    public void popUp(String message) {
+	SeekBar mSeekBar;
+	int LightProgress = Home_Control.getLL;
+	TextView lampe;
+	String light;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out); // Animation
+		setContentView(R.layout.activity_lampe);
+		lampe = (TextView) findViewById(R.id.edit_Intensite);
+		LightProgress = Home_Control.getLL;
+		light = LightProgress + "%";
+		lampe.setText(light);
+		
+		mSeekBar = (SeekBar) findViewById(R.id.seekBar1);
+		mSeekBar.setOnSeekBarChangeListener(this);
+		mSeekBar.setProgress(LightProgress);
+
+	}
+
+	public void popUp(String message) {
 		Toast.makeText(this, message, 1).show();
 	}
 
-	public void onClick_Edit_Intensite(View view) {
-		EditText editText = (EditText) findViewById(R.id.edit_Intensite);
-		int x = Integer.parseInt(editText.getText().toString());
-		Home_Control.setLevelLight(x);
-		popUp("Level : " + x);
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromTouch) {
+		LightProgress = progress;
+		lampe.setText(LightProgress+"%");
 	}
-    
-    
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_lampe, menu);
-        return true;
-    }
-    
-    public void Home(View view) {
+
+	public void onStartTrackingTouch(SeekBar seekBar) {
+	}
+
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		light = LightProgress + "%";
+		lampe.setText(light);
+		Home_Control.setLevelLight(LightProgress);
+	}
+
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.activity_lampe, menu);
+		return true;
+	}
+
+	public void Home(View view) {
 		Intent intent = new Intent(this, MainActivity.class);
 
 		startActivity(intent);
