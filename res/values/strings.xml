@@ -10,7 +10,7 @@
     <string name="Brigthness"></string>
     <string name="editTemp"></string>
     <string name="editLight"></string>
-
+    <string name="Shutter_Anim"></string>
     <drawable name="btnretour">#242223</drawable>
 
     <string name="btn_etats">STATES</string>

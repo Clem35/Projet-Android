@@ -417,12 +417,7 @@ public class Home_Control {
 			ClientResource updateShutter = new ClientResource("http://"
 					+ address + ":9000/shutter?method=pullUp");
 			updateShutter.get();
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	
 			updateShutter.release();
 			getSS = 2;
 			System.out.println("------pullUpShutter------ : ");
@@ -440,12 +435,7 @@ public class Home_Control {
 			ClientResource updateShutter = new ClientResource("http://"
 					+ address + ":9000/shutter?method=pullDown");
 			updateShutter.get();
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
 			updateShutter.release();
 			getSS = 0;
 			System.out.println("------pullDownShutter------ : ");
@@ -463,12 +453,7 @@ public class Home_Control {
 			ClientResource updateShutter = new ClientResource("http://"
 					+ address + ":9000/shutter?method=setIntermediate");
 			updateShutter.get();
-			try {
-				Thread.sleep(250);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			updateShutter.release();
 			getSS = 1;
 			System.out.println("------setIntermediateShutter------ : ");

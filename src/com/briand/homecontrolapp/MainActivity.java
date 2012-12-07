@@ -131,13 +131,13 @@ public class MainActivity extends Activity {
 
 	public void onDestroy() {
 		Home_Control.run = false;
-		popUp("------ONDESTROY------");
+
 		super.onDestroy();
 	}
 
 	public void onStop() {
 		// Home_Control.run = false;
-		popUp("------ONSTOP------");
+
 		super.onStop();
 	}
 

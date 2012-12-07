@@ -7,7 +7,8 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="retour">&lt;</string>
     <string name="switch1">Mode Automatique</string>
-    <string name="Brigthness"> </string>
+    <string name="Brigthness"></string>
+    <string name="Shutter_Anim"></string>
 
     <drawable name="btnretour">#242223</drawable>
 
