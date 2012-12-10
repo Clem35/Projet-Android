@@ -42,18 +42,19 @@ public class Home_Control {
 			}
 		}
 	}
-	
-	public static void traitementAuto(){
+
+	public static void traitementAuto() {
 		new traitementAutoLI().start();
-	//	new traitementAutoLE().start();
-	//	new traitementAutoTI().start();
-	//	new traitementAutoTE().start();
+		// new traitementAutoLE().start();
+		// new traitementAutoTI().start();
+		// new traitementAutoTE().start();
 		new traitementAutoW().start();
-	//	new traitementAutoSS().start();
-	//	new traitementAutoLL().start();
-	//	new traitementAutoLB().start();
-		
+		// new traitementAutoSS().start();
+		// new traitementAutoLL().start();
+		// new traitementAutoLB().start();
+
 	}
+
 	public static class traitementAutoLI extends Thread {
 
 		public void run() {
@@ -148,8 +149,6 @@ public class Home_Control {
 		}
 	}
 
-	
-
 	// /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Récupération de valeurs
@@ -170,13 +169,13 @@ public class Home_Control {
 		try {
 			get_light_int = Integer.parseInt(light_int.get().getText());
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.out.println("------getLightInt------ : " + get_light_int);
@@ -198,13 +197,13 @@ public class Home_Control {
 		try {
 			get_light_ext = Integer.parseInt(light_ext.get().getText());
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.out.println("------getLightExt------ : " + get_light_ext);
@@ -226,15 +225,15 @@ public class Home_Control {
 		try {
 			get_temp_int = Float.parseFloat(temp_int.get().getText());
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			get_temp_int = (float) 1.111;
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			get_temp_int = (float) 2.222;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 			get_temp_int = (float) 3.333;
 		}
@@ -258,13 +257,13 @@ public class Home_Control {
 		try {
 			get_temp_ext = Float.parseFloat(temp_ext.get().getText());
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.out.println("------getTempExt------ : " + get_temp_ext);
@@ -286,10 +285,10 @@ public class Home_Control {
 		try {
 			get_weather = Boolean.parseBoolean(weather.get().getText());
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.out.println("------getWeather------ : " + get_weather);
@@ -311,13 +310,13 @@ public class Home_Control {
 		try {
 			get_lampe_level = Integer.parseInt(lampe_level.get().getText());
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.out.println("------getLampeLevel------ : " + get_lampe_level);
@@ -340,13 +339,13 @@ public class Home_Control {
 			get_lampe_brightness = Integer.parseInt(lampe_brightness.get()
 					.getText());
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.out.println("------getLampeBrightness------ : "
@@ -369,13 +368,13 @@ public class Home_Control {
 		try {
 			get_shutter_state = Integer.parseInt(shutter_state.get().getText());
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (ResourceException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		System.out
@@ -417,7 +416,7 @@ public class Home_Control {
 			ClientResource updateShutter = new ClientResource("http://"
 					+ address + ":9000/shutter?method=pullUp");
 			updateShutter.get();
-	
+
 			updateShutter.release();
 			getSS = 2;
 			System.out.println("------pullUpShutter------ : ");
@@ -435,7 +434,7 @@ public class Home_Control {
 			ClientResource updateShutter = new ClientResource("http://"
 					+ address + ":9000/shutter?method=pullDown");
 			updateShutter.get();
-		
+
 			updateShutter.release();
 			getSS = 0;
 			System.out.println("------pullDownShutter------ : ");
@@ -453,7 +452,7 @@ public class Home_Control {
 			ClientResource updateShutter = new ClientResource("http://"
 					+ address + ":9000/shutter?method=setIntermediate");
 			updateShutter.get();
-			
+
 			updateShutter.release();
 			getSS = 1;
 			System.out.println("------setIntermediateShutter------ : ");
@@ -557,207 +556,31 @@ public class Home_Control {
 
 	}
 
-	/**
-	 * Calcul automatique du niveau des volets roulants
-	 * 
-	 * @throws IOException
-	 * @throws ResourceException
-	 */
+	public static void autoShutterWithoutTemp() {
 
-	// public public static void autoShutterState() throws ResourceException,
-	// IOException {
-	// int lightExt = getLightExt();
-	// int lightInt = getLightInt();
-	// float tempInt = getTempInt();
-	// float tempExt = getTempExt();
-	// boolean weather = getWeather();
-	//
-	// if (lightExt >= LightSetpoint) {
-	// if (lightInt >= LightSetpoint) {
-	// if (tempExt > 25) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullDownShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// }
-	// } else if (tempExt <= 25 && tempExt >= temperatureSetpoint) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// }
-	// } else if (tempExt < temperatureSetpoint) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// }
-	// }
-	// } else if (lightInt < LightSetpoint) {
-	// if (tempExt > 25) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullDownShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// }
-	// } else if (tempExt <= 25 && tempExt >= temperatureSetpoint) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// }
-	// } else if (tempExt < temperatureSetpoint) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// }
-	// }
-	// }
-	//
-	// } else if (lightExt < LightSetpoint && lightExt >= 50) {
-	// if (lightInt >= LightSetpoint) {
-	// if (tempExt > 25) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullDownShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// }
-	// } else if (tempExt <= 25 && tempExt >= temperatureSetpoint) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// }
-	// } else if (tempExt < temperatureSetpoint) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullDownShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullDownShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// }
-	// }
-	// } else if (lightInt < LightSetpoint) {
-	// if (tempExt > 25) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullDownShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// }
-	// } else if (tempExt <= 25 && tempExt >= temperatureSetpoint) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullUpShutter();
-	// } else if (weather == false) {
-	// pullUpShutter();
-	// }
-	// }
-	// } else if (tempExt < temperatureSetpoint) {
-	// if (tempInt >= temperatureSetpoint) {
-	// if (weather == true) {
-	// pullDownShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// } else if (tempInt < temperatureSetpoint) {
-	// if (weather == true) {
-	// pullDownShutter();
-	// } else if (weather == false) {
-	// pullDownShutter();
-	// }
-	// }
-	// }
-	// }
-	//
-	// } else if (lightExt < 50) {
-	// pullDownShutter();
-	// }
-	// }
+		int ShutterState = getSS;
+		if (getLE < LightSetpoint) {
+			if (ShutterState == 1) {
+				pullUpShutter();
+			} else if (ShutterState == 0) {
+				setIntermediateShutter();
+				if (getLE < LightSetpoint) {
+					pullUpShutter();
+				}
+			}
+
+		} else if (getLE > LightSetpoint) {
+			if (ShutterState == 1) {
+				pullDownShutter();
+			} else if (ShutterState == 2) {
+				setIntermediateShutter();
+				if (getLE > LightSetpoint) {
+					pullDownShutter();
+				}
+			}
+
+		}
+	}
 
 	/**
 	 * autoShutterState : Calcul automatique de la position du volet
@@ -774,25 +597,31 @@ public class Home_Control {
 		if (lightExt >= LightSetpoint) {
 			if (tempExt > 25) {
 				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullDownShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
+					pullDownShutter();
+
+					// if (weather == true) {
+					// pullDownShutter();
+					// } else if (weather == false) {
+					// pullDownShutter();
+					// }
 				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
+					pullUpShutter();
+
+					// if (weather == true) {
+					// pullUpShutter();
+					// } else if (weather == false) {
+					// pullUpShutter();
+					// }
 				}
 			} else if (tempExt <= 25 && tempExt >= temperatureSetpoint) {
 				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
+					pullUpShutter();
+
+					// if (weather == true) {
+					// pullUpShutter();
+					// } else if (weather == false) {
+					// pullUpShutter();
+					// }
 				} else if (tempInt < temperatureSetpoint) {
 					if (weather == true) {
 						pullUpShutter();

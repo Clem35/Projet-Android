@@ -8,11 +8,13 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements
+		SeekBar.OnSeekBarChangeListener {
 
 	Switch auto;
 	String clickable;
@@ -20,6 +22,9 @@ public class MainActivity extends Activity {
 	private static boolean x = false;
 	private static boolean weather = true;
 	private static ImageView meteo;
+	TextView Light;
+	SeekBar mSeekBarLight;
+	int consigneLight = Home_Control.LightSetpoint;
 
 	// evenements
 	public void popUp(String message) {
@@ -33,8 +38,17 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		meteo = (ImageView) findViewById(R.id.imageAndroidBas);
 		// new Home_Control.traitementAuto().start();
+		
 		Home_Control.traitementAuto();
+		
 		new traitementMeteo().start();
+
+		Light = (TextView) findViewById(R.id.edit_Light);
+		Light.setText(consigneLight + "lux");
+
+		mSeekBarLight = (SeekBar) findViewById(R.id.seekBar_Light);
+		mSeekBarLight.setOnSeekBarChangeListener(this);
+		mSeekBarLight.setProgress(consigneLight);
 	}
 
 	public void automatic_Mode(View view) {
@@ -64,10 +78,10 @@ public class MainActivity extends Activity {
 		public void handleMessage(android.os.Message msg) {
 			if (msg.what == 0) {
 				meteo.setImageResource(R.drawable.android_soleil);
-			//	System.out.println("SOLEILSOLEILSOLEILSOLEILSOLEILSOLEIL");
+				// System.out.println("SOLEILSOLEILSOLEILSOLEILSOLEILSOLEIL");
 			} else if (msg.what == 1) {
 				meteo.setImageResource(R.drawable.android_pluie);
-			//	System.out.println("PLUIEPLUIEPLUIEPLUIEPLUIE");
+				// System.out.println("PLUIEPLUIEPLUIEPLUIEPLUIE");
 			}
 
 		};
@@ -83,8 +97,8 @@ public class MainActivity extends Activity {
 			}
 			while (true) {
 				weather = Home_Control.getW;
-//				System.out.println("|||||=======TRAITEMENT METEO =====|||||"
-//						+ weather);
+				// System.out.println("|||||=======TRAITEMENT METEO =====|||||"
+				// + weather);
 				if (weather)
 					handler.sendEmptyMessage(0);
 				if (!weather)
@@ -184,6 +198,27 @@ public class MainActivity extends Activity {
 	public void click_config(View view) {
 		Intent intent = new Intent(this, Configuration.class);
 		startActivity(intent);
+	}
+
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+		consigneLight = progress;
+		Light.setText(consigneLight + "lux");
+
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		
+	}
+
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		Light.setText(consigneLight + "lux");
+		Home_Control.setLightSetpoint(consigneLight);
+		Home_Control.autoShutterWithoutTemp();
+		Home_Control.autoLightLevel();
 	}
 
 }

@@ -11,8 +11,10 @@
     <string name="editTemp"></string>
     <string name="editLight"></string>
     <string name="Shutter_Anim"></string>
+
     <drawable name="btnretour">#242223</drawable>
 
+    <string name="consigne_Light2">BRIGHTNESS</string>
     <string name="btn_etats">STATES</string>
     <string name="btn_consignes">SETPOINTS</string>
     <string name="btn_volet">SHUTTER</string>

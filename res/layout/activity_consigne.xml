@@ -112,7 +112,7 @@
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <!-- ScrollView -->
+    <!-- SeekBar -->
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

@@ -12,6 +12,7 @@
 
     <drawable name="btnretour">#242223</drawable>
 
+    <string name="consigne_Light2">LUMINOSITE</string>
     <string name="btn_etats">ETATS</string>
     <string name="btn_consignes">CONSIGNES</string>
     <string name="btn_volet">VOLET</string>
