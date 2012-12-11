@@ -22,7 +22,7 @@ public class Consigne extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		overridePendingTransition(R.anim.hyperspace_in, R.anim.hyperspace_out); // Animation
+	//	overridePendingTransition(R.anim.hyperspace_in, R.anim.hyperspace_out); // Animation
 		setContentView(R.layout.activity_consigne);
 		Temp = (TextView) findViewById(R.id.edit_Temperature);
 		Temp.setText(consigneTemp + "°");

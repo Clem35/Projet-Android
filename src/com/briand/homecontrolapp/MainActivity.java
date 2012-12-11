@@ -34,7 +34,7 @@ public class MainActivity extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		overridePendingTransition(R.anim.wave_scale, R.anim.wave_scale); // Animation
+	//	overridePendingTransition(R.anim.wave_scale, R.anim.wave_scale); // Animation
 		setContentView(R.layout.activity_main);
 		meteo = (ImageView) findViewById(R.id.imageAndroidBas);
 		// new Home_Control.traitementAuto().start();

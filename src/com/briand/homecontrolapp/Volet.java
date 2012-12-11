@@ -19,7 +19,7 @@ public class Volet extends Activity implements SeekBar.OnSeekBarChangeListener{
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		 overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);  //Animation
+	//	 overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);  //Animation
 		setContentView(R.layout.activity_volet);
 		voletGrad=(ImageView)findViewById(R.id.imageVoletGrad);
 		volet=(TextView)findViewById(R.id.edit_Volet);

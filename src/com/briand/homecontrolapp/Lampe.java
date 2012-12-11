@@ -21,7 +21,7 @@ public class Lampe extends Activity implements SeekBar.OnSeekBarChangeListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out); // Animation
+		//overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out); // Animation
 		setContentView(R.layout.activity_lampe);
 		lampe = (TextView) findViewById(R.id.edit_Intensite);
 		lampeGrad = (ImageView) findViewById(R.id.imageLampeGrad);

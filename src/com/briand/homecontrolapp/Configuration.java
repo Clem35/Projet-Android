@@ -13,7 +13,7 @@ public class Configuration extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		 overridePendingTransition(R.anim.shake, R.anim.shake);  //Animation
+	//	 overridePendingTransition(R.anim.shake, R.anim.shake);  //Animation
 		setContentView(R.layout.activity_configuration);
 	}
 
