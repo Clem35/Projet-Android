@@ -12,12 +12,12 @@ public class Home_Control {
 	public static float temperatureSetpoint = 20;
 	public static boolean automatic = true;
 	public static String address = "10.0.2.2";
-	public static int getLI = 0;
-	public static int getLE = 0;
-	public static float getTI = 0;
-	public static float getTE = 0;
-	public static int getSS = 0;
-	public static boolean getW = false;
+	public static int getLI = 800;
+	public static int getLE = 800;
+	public static float getTI = (float) 20.4;
+	public static float getTE = (float) 20.4;
+	public static int getSS = 2;
+	public static boolean getW = true;
 	public static int getLL = 0;
 	public static int getLB = 0;
 	public static boolean run = true;
@@ -25,126 +25,77 @@ public class Home_Control {
 	/**
 	 * Thread permettant la mise a jour des variables continuellement
 	 */
-	public static class traitementAuto extends Thread {
-
-		public void run() {
-			while (run) {
-				getLI = getLightInt();
-				getLE = getLightExt();
-				getTI = getTempInt();
-				getTE = getTempExt();
-				getSS = getShutterState();
-				getW = getWeather();
-				getLL = getLampeLevel();
-				getLB = getLampeBrightness();
-				System.out
-						.println("HOME_CONTROL----------Traitement Getteurs ----------");
-			}
-		}
-	}
-
+	// lancement des thread
 	public static void traitementAuto() {
 		new traitementAutoLI().start();
-		// new traitementAutoLE().start();
-		// new traitementAutoTI().start();
-		// new traitementAutoTE().start();
 		new traitementAutoW().start();
-		// new traitementAutoSS().start();
-		// new traitementAutoLL().start();
-		// new traitementAutoLB().start();
-
 	}
 
+	/**
+	 * Destruction des threads
+	 */
+	public static void threadDown() {
+		run = false;
+	}
+
+	/**
+	 * Thread mettant à jour Luminosité Intérieure, Extérieure, Température
+	 * Intérieure, Extérieure
+	 * 
+	 */
 	public static class traitementAutoLI extends Thread {
 
 		public void run() {
-			while (run) {
-				getLI = getLightInt();
+			while (run) {	
 				getLE = getLightExt();
+				delay100();
+				getLI = getLightInt();		
+				delay100();
 				getTI = getTempInt();
+				delay100();
 				getTE = getTempExt();
-				System.out
-						.println("HOME_CONTROL-----LI-------Traitement Getteurs ----------");
+				delay100();
+
 			}
 		}
 	}
 
-	public static class traitementAutoLE extends Thread {
-
-		public void run() {
-			while (run) {
-				getLE = getLightExt();
-				System.out
-						.println("HOME_CONTROL-----LE-----Traitement Getteurs ----------");
-			}
+	public static void delay100() {
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	public static class traitementAutoTI extends Thread {
-
-		public void run() {
-			while (run) {
-				getTI = getTempInt();
-				System.out
-						.println("HOME_CONTROL-----TI-----Traitement Getteurs ----------");
-			}
+	public static void delay1000() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
-	public static class traitementAutoTE extends Thread {
-
-		public void run() {
-			while (run) {
-				getTE = getTempExt();
-				System.out
-						.println("HOME_CONTROL-----TE-----Traitement Getteurs ----------");
-			}
-		}
-	}
-
-	public static class traitementAutoSS extends Thread {
-
-		public void run() {
-			while (run) {
-				getSS = getShutterState();
-				System.out
-						.println("HOME_CONTROL-----SS-----Traitement Getteurs ----------");
-			}
-		}
-	}
-
+	/**
+	 * Thread mettant à jour Météo, état du volet roulant, brightness de la
+	 * lampte et le niveau de luminosité de la lampe
+	 * 
+	 */
 	public static class traitementAutoW extends Thread {
 
 		public void run() {
 			while (run) {
+				getSS = getShutterState();	
+				delay100();
 				getW = getWeather();
-				getSS = getShutterState();
+				delay100();
 				getLB = getLampeBrightness();
+				delay100();
 				getLL = getLampeLevel();
-				System.out
-						.println("HOME_CONTROL-----W-----Traitement Getteurs ----------");
-			}
-		}
-	}
+				delay100();
 
-	public static class traitementAutoLL extends Thread {
-
-		public void run() {
-			while (run) {
-				getLL = getLampeLevel();
-				System.out
-						.println("HOME_CONTROL-----LL-----Traitement Getteurs ----------");
-			}
-		}
-	}
-
-	public static class traitementAutoLB extends Thread {
-
-		public void run() {
-			while (run) {
-				getLB = getLampeBrightness();
-				System.out
-						.println("HOME_CONTROL-----LB-----Traitement Getteurs ----------");
 			}
 		}
 	}
@@ -178,8 +129,8 @@ public class Home_Control {
 
 			e.printStackTrace();
 		}
-		System.out.println("------getLightInt------ : " + get_light_int);
 		light_int.release();
+		getLI = get_light_int;
 		return get_light_int;
 	}
 
@@ -206,7 +157,6 @@ public class Home_Control {
 
 			e.printStackTrace();
 		}
-		System.out.println("------getLightExt------ : " + get_light_ext);
 		light_ext.release();
 		return get_light_ext;
 	}
@@ -214,9 +164,7 @@ public class Home_Control {
 	/**
 	 * getTempInt : obtenir la température intérieure
 	 * 
-	 * @return
-	 * @throws ResourceException
-	 * @throws IOException
+	 * @return température intérieure
 	 */
 	public static float getTempInt() {
 		ClientResource temp_int = new ClientResource("http://" + address
@@ -238,7 +186,6 @@ public class Home_Control {
 			get_temp_int = (float) 3.333;
 		}
 
-		System.out.println("------getTempInt------ : " + get_temp_int);
 		temp_int.release();
 		return get_temp_int;
 	}
@@ -246,9 +193,7 @@ public class Home_Control {
 	/**
 	 * getTempExt : Obtenir la température extérieure
 	 * 
-	 * @return
-	 * @throws ResourceException
-	 * @throws IOException
+	 * @return température extérieure
 	 */
 	public static float getTempExt() {
 		ClientResource temp_ext = new ClientResource("http://" + address
@@ -266,7 +211,6 @@ public class Home_Control {
 
 			e.printStackTrace();
 		}
-		System.out.println("------getTempExt------ : " + get_temp_ext);
 		temp_ext.release();
 		return get_temp_ext;
 	}
@@ -274,9 +218,7 @@ public class Home_Control {
 	/**
 	 * getWeather : obtenir la météo
 	 * 
-	 * @return
-	 * @throws ResourceException
-	 * @throws IOException
+	 * @return météo
 	 */
 	public static boolean getWeather() {
 		ClientResource weather = new ClientResource("http://" + address
@@ -291,7 +233,6 @@ public class Home_Control {
 
 			e.printStackTrace();
 		}
-		System.out.println("------getWeather------ : " + get_weather);
 		weather.release();
 		return get_weather;
 	}
@@ -299,9 +240,7 @@ public class Home_Control {
 	/**
 	 * getLampeLevel : Obtenir le niveau de la lampe (entre 0 et 100%)
 	 * 
-	 * @return
-	 * @throws ResourceException
-	 * @throws IOException
+	 * @return niveau de la lampe
 	 */
 	public static int getLampeLevel() {
 		ClientResource lampe_level = new ClientResource("http://" + address
@@ -319,7 +258,6 @@ public class Home_Control {
 
 			e.printStackTrace();
 		}
-		System.out.println("------getLampeLevel------ : " + get_lampe_level);
 		lampe_level.release();
 		return get_lampe_level;
 	}
@@ -327,9 +265,7 @@ public class Home_Control {
 	/**
 	 * GetLampeBrightness : obtenir la luminosité de la lampe
 	 * 
-	 * @return
-	 * @throws ResourceException
-	 * @throws IOException
+	 * @return luminosité lampe
 	 */
 	public static int getLampeBrightness() {
 		ClientResource lampe_brightness = new ClientResource("http://"
@@ -348,8 +284,6 @@ public class Home_Control {
 
 			e.printStackTrace();
 		}
-		System.out.println("------getLampeBrightness------ : "
-				+ get_lampe_brightness);
 		lampe_brightness.release();
 		return get_lampe_brightness;
 	}
@@ -357,9 +291,7 @@ public class Home_Control {
 	/**
 	 * getShutterState : Obtenir l'état du volet roulant
 	 * 
-	 * @return
-	 * @throws ResourceException
-	 * @throws IOException
+	 * @return état du volet roulant
 	 */
 	public static int getShutterState() {
 		ClientResource shutter_state = new ClientResource("http://" + address
@@ -377,8 +309,6 @@ public class Home_Control {
 
 			e.printStackTrace();
 		}
-		System.out
-				.println("------getShutterState------ : " + get_shutter_state);
 		shutter_state.release();
 		return get_shutter_state;
 	}
@@ -395,6 +325,7 @@ public class Home_Control {
 	 * @param valeur
 	 */
 	public static void setLevelLight(int valeur) {
+		getLL = valeur;
 		if (valeur > 100)
 			valeur = 100;
 		if (valeur < 0)
@@ -404,8 +335,6 @@ public class Home_Control {
 		// Update value
 		set_level_light.get();
 		set_level_light.release();
-		getLL = valeur;
-		System.out.println("------setLevelLight------ : " + valeur);
 	}
 
 	/**
@@ -419,7 +348,6 @@ public class Home_Control {
 
 			updateShutter.release();
 			getSS = 2;
-			System.out.println("------pullUpShutter------ : ");
 		}
 	}
 
@@ -437,7 +365,6 @@ public class Home_Control {
 
 			updateShutter.release();
 			getSS = 0;
-			System.out.println("------pullDownShutter------ : ");
 		}
 	}
 
@@ -455,7 +382,6 @@ public class Home_Control {
 
 			updateShutter.release();
 			getSS = 1;
-			System.out.println("------setIntermediateShutter------ : ");
 		}
 	}
 
@@ -464,8 +390,6 @@ public class Home_Control {
 	 */
 	public static void setLightSetpoint(int light) {
 		LightSetpoint = light;
-		System.out.println("------setLightSetpoint------ : " + light);
-
 	}
 
 	/**
@@ -473,8 +397,6 @@ public class Home_Control {
 	 */
 	public static void setTempSetpoint(float temp) {
 		temperatureSetpoint = temp;
-		System.out.println("------setTempSetpoint------ : " + temp);
-
 	}
 
 	/**
@@ -482,7 +404,6 @@ public class Home_Control {
 	 */
 	public static void setAutomatic(boolean x) {
 		automatic = x;
-		System.out.println("------setAutomatic------ : " + x);
 	}
 
 	/**
@@ -493,7 +414,6 @@ public class Home_Control {
 	 */
 	public static void setAddressIP(String x) {
 		address = x;
-		System.out.println("------setIP------ : " + address);
 	}
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -558,28 +478,14 @@ public class Home_Control {
 
 	public static void autoShutterWithoutTemp() {
 
-		int ShutterState = getSS;
-		if (getLE < LightSetpoint) {
-			if (ShutterState == 1) {
-				pullUpShutter();
-			} else if (ShutterState == 0) {
-				setIntermediateShutter();
-				if (getLE < LightSetpoint) {
-					pullUpShutter();
-				}
-			}
-
-		} else if (getLE > LightSetpoint) {
-			if (ShutterState == 1) {
-				pullDownShutter();
-			} else if (ShutterState == 2) {
-				setIntermediateShutter();
-				if (getLE > LightSetpoint) {
-					pullDownShutter();
-				}
-			}
-
+		if ((getLE / 2) > LightSetpoint) {
+			pullDownShutter();
+		} else if ((getLE) > LightSetpoint) {
+			setIntermediateShutter();
+		} else {
+			pullUpShutter();
 		}
+
 	}
 
 	/**
@@ -623,11 +529,12 @@ public class Home_Control {
 					// pullUpShutter();
 					// }
 				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
+					pullUpShutter();
+					// if (weather == true) {
+					// pullUpShutter();
+					// } else if (weather == false) {
+					// pullUpShutter();
+					// }
 				}
 			} else if (tempExt < temperatureSetpoint) {
 				if (tempInt >= temperatureSetpoint) {
@@ -649,45 +556,51 @@ public class Home_Control {
 
 			if (tempExt > 25) {
 				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullDownShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
+					pullDownShutter();
+					// if (weather == true) {
+					// pullDownShutter();
+					// } else if (weather == false) {
+					// pullDownShutter();
+					// }
 				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
+					pullUpShutter();
+					// if (weather == true) {
+					// pullUpShutter();
+					// } else if (weather == false) {
+					// pullUpShutter();
+					// }
 				}
 			} else if (tempExt <= 25 && tempExt >= temperatureSetpoint) {
 				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
+					pullUpShutter();
+					// if (weather == true) {
+					// pullUpShutter();
+					// } else if (weather == false) {
+					// pullUpShutter();
+					// }
 				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullUpShutter();
-					} else if (weather == false) {
-						pullUpShutter();
-					}
+					pullUpShutter();
+					// if (weather == true) {
+					// pullUpShutter();
+					// } else if (weather == false) {
+					// pullUpShutter();
+					// }
 				}
 			} else if (tempExt < temperatureSetpoint) {
 				if (tempInt >= temperatureSetpoint) {
-					if (weather == true) {
-						pullDownShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
+					pullDownShutter();
+					// if (weather == true) {
+					// pullDownShutter();
+					// } else if (weather == false) {
+					// pullDownShutter();
+					// }
 				} else if (tempInt < temperatureSetpoint) {
-					if (weather == true) {
-						pullDownShutter();
-					} else if (weather == false) {
-						pullDownShutter();
-					}
+					pullDownShutter();
+					// if (weather == true) {
+					// pullDownShutter();
+					// } else if (weather == false) {
+					// pullDownShutter();
+					// }
 				}
 			}
 

@@ -30,7 +30,7 @@
         style="@style/ActionBar" >
 
         <ImageView
-            android:id="@+id/ImageTemperature"
+            android:id="@+id/ImageLampe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"

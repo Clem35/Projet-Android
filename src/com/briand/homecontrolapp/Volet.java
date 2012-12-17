@@ -6,49 +6,58 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class Volet extends Activity implements SeekBar.OnSeekBarChangeListener{
+public class Volet extends Activity implements SeekBar.OnSeekBarChangeListener {
+
+	// /////////////////////////////////////////////////
+	// VARIABLES
+	// /////////////////////////////////////////////////
 	SeekBar mSeekBar;
 	ImageView voletGrad;
 	TextView volet;
-	int position = Home_Control.getSS;
+	int position = Home_Control.getSS; // récupération position volet
+
+	// /////////////////////////////////////////////////
+	// onCREATE
+	// /////////////////////////////////////////////////
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	//	 overridePendingTransition(R.anim.zoom_enter, R.anim.zoom_exit);  //Animation
 		setContentView(R.layout.activity_volet);
-		voletGrad=(ImageView)findViewById(R.id.imageVoletGrad);
-		volet=(TextView)findViewById(R.id.edit_Volet);
-		modificationVolet();
-		
+
+		// Récupération des éléments de la vue
+		voletGrad = (ImageView) findViewById(R.id.imageVoletGrad);
+		volet = (TextView) findViewById(R.id.edit_Volet);
 		mSeekBar = (SeekBar) findViewById(R.id.seekBarVolet);
+
+		// MAJ seekBar + image en fonction de la position actuelle
+		modificationVolet();
 		mSeekBar.setOnSeekBarChangeListener(this);
 		mSeekBar.setProgress(position);
 	}
 
-	public void popUp(String message) {
-		Toast.makeText(this, message, 1).show();
+	public void onStop() {
+		super.onStop();
 	}
 
-	public void modificationVolet(){
-		if(position==0){
+	// /////////////////////////////////////////////////
+	// MODIF Image Volet en fonction de la position
+	// /////////////////////////////////////////////////
+	public void modificationVolet() {
+		if (position == 0) {
 			volet.setText("0%");
 			voletGrad.setImageResource(R.drawable.ferme);
-		}else if(position==1){
+		} else if (position == 1) {
 			volet.setText("50%");
 			voletGrad.setImageResource(R.drawable.semiouvert);
-		}if(position==2){
+		}
+		if (position == 2) {
 			volet.setText("100%");
 			voletGrad.setImageResource(R.drawable.ouvert);
 		}
 	}
-
-
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,37 +65,54 @@ public class Volet extends Activity implements SeekBar.OnSeekBarChangeListener{
 		return true;
 	}
 
+	// RETOUR ACCEUIL
 	public void Home(View view) {
 		Intent intent = new Intent(this, MainActivity.class);
-
 		startActivity(intent);
 	}
 
+	// /////////////////////////////////////////////////
+	// SEEKBARS
+	// /////////////////////////////////////////////////
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
-		// TODO Auto-generated method stub
-		position=progress;
+		position = progress;
 		modificationVolet();
 	}
 
 	@Override
 	public void onStartTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
-		// TODO Auto-generated method stub
-		modificationVolet();
-		
-		if(position==0){
-			Home_Control.pullDownShutter();
-		}else if(position==1){
-			Home_Control.setIntermediateShutter();
-		}if(position==2){
-			Home_Control.pullUpShutter();
+		modificationVolet(); // Modification de l'image
+		new setShutter().start(); // Lancement du thread pour modifier la
+									// position du VR
+
+	}
+
+	// /////////////////////////////////////////////////
+	// THREAD MODIFICATION POSITION VOLETS
+	// /////////////////////////////////////////////////
+	public class setShutter extends Thread {
+		public void run() {
+			if (position == 0) {
+				Home_Control.pullDownShutter();
+			} else if (position == 1) {
+				Home_Control.setIntermediateShutter();
+			} else if (position == 2) {
+				Home_Control.pullUpShutter();
+			}
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Home_Control.setLightSetpoint(Home_Control.getLightInt());
+
 		}
 	}
 }

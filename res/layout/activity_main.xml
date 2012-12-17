@@ -47,19 +47,19 @@
             android:textColor="#FFFFFF"
             android:textColorHint="#8fee00" />
     </LinearLayout>
-    
-        <LinearLayout
-          xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:orientation="horizontal"
-            android:background="#7796b327" >
-        
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#7796b327"
+        android:orientation="horizontal" >
     </LinearLayout>
-    
-<!-- Luminosité -->
-     <LinearLayout
+
+    <!-- Luminosité -->
+
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         style="@style/ActionBar" >
@@ -73,8 +73,7 @@
             android:id="@+id/textViewConsigne_Light"
             style="@style/TextActionBar"
             android:layout_weight="3"
-            android:text="@string/consigne_Light2"
-         />
+            android:text="@string/consigne_Light2" />
 
         <TextView
             android:id="@+id/edit_Light"
@@ -102,16 +101,16 @@
             android:progress="0"
             android:secondaryProgress="2" />
     </LinearLayout>
-    
+
     <!-- Consignes -->
+
     <LinearLayout
-          xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:orientation="horizontal"
-            android:background="#7796b327" >
-        
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#7796b327"
+        android:orientation="horizontal" >
     </LinearLayout>
 
     <ScrollView

@@ -30,12 +30,12 @@
         style="@style/ActionBar" >
 
         <ImageView
-            android:id="@+id/ImageTemperature"
+            android:id="@+id/ImageSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
             android:layout_weight="0"
-            android:src="@drawable/lamp" />
+            android:src="@drawable/settings" />
 
         <TextView
             android:id="@+id/ac_Configuration"
@@ -48,7 +48,6 @@
             android:text="@string/config_address_ip"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -57,12 +56,12 @@
         style="@style/ActionBar" >
 
         <ImageView
-            android:id="@+id/ImageTemperature"
+            android:id="@+id/ImageSettings2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
             android:layout_weight="0"
-            android:src="@drawable/lamp" />
+            android:src="@drawable/settings" />
 
         <EditText
             android:id="@+id/edit_Address"
@@ -71,10 +70,10 @@
             android:layout_weight="0"
             android:ems="10"
             android:inputType="text"
-            android:textColor="#FFFFFF" 
             android:shadowColor="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:textColorHighlight="#96b327"
-            android:textColorHint="#FFFFFF"/>
+            android:textColorHint="#FFFFFF" />
 
         <ImageView
             android:id="@+id/Image_Edit_Address"
@@ -92,12 +91,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom" >
+         android:gravity="bottom" >
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:src="@drawable/android" />
     </LinearLayout>
 

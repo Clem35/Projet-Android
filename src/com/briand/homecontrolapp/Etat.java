@@ -7,21 +7,25 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Etat extends Activity {
 
+	// /////////////////////////////////////////////////
+	// VARIABLES
+	// /////////////////////////////////////////////////
 	private static TextView text, text1, text2, text3, text4, text5, text6,
 			text7;
 	private static String message, message1, message2, message3, message4,
 			message5, message6, message7;
-	private static int x = 0;
-	private static boolean y = true;
+	private static int x = 0; // itérateur pour mise a jour données
+	private static boolean y = true; // condition de fonctionnement du thread
+										// MAJ
 	Thread thread;
-	String languesDef ="";
 
+	// /////////////////////////////////////////////////
+	// HANDLER : MISE a JOUR des Données dans la VIEW
+	// /////////////////////////////////////////////////
 	private static Handler handler = new Handler() {
-
 		public void handleMessage(android.os.Message msg) {
 			if (msg.what == 0) {
 				text.setText(message);
@@ -41,15 +45,18 @@ public class Etat extends Activity {
 			} else if (msg.what == 7) {
 				text7.setText(message7);
 			}
-			// traitementDesDonnees;
 
 		};
 	};
 
+	// /////////////////////////////////////////////////
+	// OnCREATE
+	// /////////////////////////////////////////////////
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_etat);
+		// Récupération des éléments de la vue
 		text = (TextView) findViewById(R.id.valeur_etat_tempInt);
 		text1 = (TextView) findViewById(R.id.valeur_etat_tempExt);
 		text2 = (TextView) findViewById(R.id.valeur_etat_lightInt);
@@ -58,13 +65,16 @@ public class Etat extends Activity {
 		text5 = (TextView) findViewById(R.id.valeur_etat_PositionVolet);
 		text6 = (TextView) findViewById(R.id.valeur_etat_lightLevel);
 		text7 = (TextView) findViewById(R.id.valeur_etat_lightBrightness);
-		y = true;
-		new traitementDesDonnees().start();
+
+		y = true; // activation de thread mise a jour des données
+		new traitementDesDonnees().start(); // activation de thread mise a jour
+											// des données
 
 	}
 
-	public void popUp(String message) {
-		Toast.makeText(this, message, 1).show();
+	public void onClickEtat(View view) {
+		new traitementDesDonnees().start();
+
 	}
 
 	@Override
@@ -73,19 +83,23 @@ public class Etat extends Activity {
 		return true;
 	}
 
+	// /////////////////////////////////////////////////
+	// HOME : Retour à l'acceuil
+	// /////////////////////////////////////////////////
 	public void Home(View view) {
 		Intent intent = new Intent(this, MainActivity.class);
-		y = false;
 		startActivity(intent);
 	}
 
-	public void onClickEtat(View view) {
-		// traitementDesDonnees;
-
+	public void onStop() {
+		y = false; // Arret du thread de MAJ des données
+		super.onStop();
 	}
 
-	public static class traitementDesDonnees extends Thread {
-
+	// /////////////////////////////////////////////////
+	// THREAD : MISE a JOUR des DONNEES
+	// /////////////////////////////////////////////////
+	public class traitementDesDonnees extends Thread {
 		public void run() {
 			while (y) {
 				if (x == 8)
@@ -123,11 +137,9 @@ public class Etat extends Activity {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				handler.sendEmptyMessage(x++);
-
 			}
 		}
 	}

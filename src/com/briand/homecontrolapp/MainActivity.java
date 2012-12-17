@@ -11,98 +11,115 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity implements
 		SeekBar.OnSeekBarChangeListener {
 
-	Switch auto;
-	String clickable;
-	private static ImageView bouton, bouton2;
-	private static boolean x = false;
-	private static boolean weather = true;
-	private static ImageView meteo;
+	// VARIABLES
+	Switch auto; // switch du mode automatique
+	String clickable; 
+	private static ImageView bouton, bouton2, meteo;
+	private static boolean x = false; // variable permettant d'activer ou désactiver le mode automatique
+	private static boolean weather;
 	TextView Light;
-	SeekBar mSeekBarLight;
-	int consigneLight = Home_Control.LightSetpoint;
+	SeekBar mSeekBarLight; // SeekBar de la luminosité intérieure
+	static int consigneLight = Home_Control.LightSetpoint; // Consigne luminosité intérieure
+	private static boolean run = true; // état du thread météo
 
-	// evenements
-	public void popUp(String message) {
-		Toast.makeText(this, message, 1).show();
-	}
+	
+	// /////////////////////////////////////////////////
+	// OnCREATE
+	// /////////////////////////////////////////////////
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	//	overridePendingTransition(R.anim.wave_scale, R.anim.wave_scale); // Animation
 		setContentView(R.layout.activity_main);
+
+		// Récupération des éléments de la vue
 		meteo = (ImageView) findViewById(R.id.imageAndroidBas);
-		// new Home_Control.traitementAuto().start();
-		
-		Home_Control.traitementAuto();
-		
-		new traitementMeteo().start();
-
-		Light = (TextView) findViewById(R.id.edit_Light);
-		Light.setText(consigneLight + "lux");
-
 		mSeekBarLight = (SeekBar) findViewById(R.id.seekBar_Light);
+		Light = (TextView) findViewById(R.id.edit_Light);
+
+		run = true;
+		Home_Control.traitementAuto(); // lancement threads variables restlet
+
+		new traitementMeteo().start(); // lancement du thread des images météo
+
+		// Mise à jour de la seekbar et du text view en fonction de la consigne
+		// de luminosité
+		Light.setText(consigneLight + "lux");
 		mSeekBarLight.setOnSeekBarChangeListener(this);
 		mSeekBarLight.setProgress(consigneLight);
+		new setlumiere().start(); // modification de la luminosité en fonction
+									// de la consigne
 	}
 
 	public void automatic_Mode(View view) {
+		// récupération des 2 boutons (volet + lumière) afin de les bloquer ou
+		// non en fonction du mode automatique
 		bouton = (ImageView) findViewById(R.id.ImageView02);
 		bouton2 = (ImageView) findViewById(R.id.ImageView2);
+		// Récupération de l'état du switch
 		boolean on = ((Switch) view).isChecked();
 
-		if (on) {
+		if (on) { // si le mode automatique est activé
 			x = true;
-			bouton.setClickable(false);
+			bouton.setClickable(false); // On bloque l'acces à la modification
+										// manuelle des volets et lumières
 			bouton.setImageResource(R.drawable.redbutton);
-			bouton2.setClickable(false);
+			bouton2.setClickable(false);// On bloque l'acces à la modification
+										// manuelle des volets et lumières
 			bouton2.setImageResource(R.drawable.redbutton);
-			new traitementAutomatique().start();
+			new traitementAutomatique().start(); // on démarre le mode
+													// automatique
 		} else {
-			x = false;
-			bouton.setClickable(true);
+			x = false; // on arrete le mode automatique (arret du thread)
+			bouton.setClickable(true);// on autorise l'acces au mode manuel
+										// volets + lumières
 			bouton.setImageResource(R.drawable.custom_btn);
-			bouton2.setClickable(true);
+			bouton2.setClickable(true);// on autorise l'acces au mode manuel
+										// volets + lumières
 			bouton2.setImageResource(R.drawable.custom_btn);
 		}
 	}
 
+	/**
+	 * Traitement thread + Handler Météo
+	 */
 	private static Handler handler = new Handler() {
 
+		// /////////////////////////////////////////////////
+		// MISE A JOUR METEO DANS VUE ANDROID
+		// /////////////////////////////////////////////////
 		@SuppressLint("NewApi")
 		public void handleMessage(android.os.Message msg) {
 			if (msg.what == 0) {
 				meteo.setImageResource(R.drawable.android_soleil);
-				// System.out.println("SOLEILSOLEILSOLEILSOLEILSOLEILSOLEIL");
 			} else if (msg.what == 1) {
 				meteo.setImageResource(R.drawable.android_pluie);
-				// System.out.println("PLUIEPLUIEPLUIEPLUIEPLUIE");
 			}
 
-		};
+		}
 	};
 
 	public static class traitementMeteo extends Thread {
 		public void run() {
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			while (true) {
-				weather = Home_Control.getW;
-				// System.out.println("|||||=======TRAITEMENT METEO =====|||||"
-				// + weather);
+			while (run) {
+
+				weather = Home_Control.getW; // récupération état météo
+
 				if (weather)
-					handler.sendEmptyMessage(0);
+					handler.sendEmptyMessage(0); // s'il fait beau activé
+													// première action
 				if (!weather)
-					handler.sendEmptyMessage(1);
+					handler.sendEmptyMessage(1); // s'il pleut activité deuxième
+													// action
+				try {
+					Thread.sleep(20000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -113,11 +130,17 @@ public class MainActivity extends Activity implements
 		return true;
 	}
 
+	// onRESUME
 	public void onResume() {
-
 		super.onResume();
 	}
 
+	// /////////////////////////////////////////////////
+	// OnSTART
+	//
+	// Récupération du mode automatique et
+	// Mise à jour des boutons et switch
+	// /////////////////////////////////////////////////
 	public void onStart() {
 		bouton = (ImageView) findViewById(R.id.ImageView02);
 		bouton2 = (ImageView) findViewById(R.id.ImageView2);
@@ -134,46 +157,82 @@ public class MainActivity extends Activity implements
 		}
 		auto = (Switch) findViewById(R.id.switch1);
 		auto.setChecked(x);
+		
+		consigneLight=Home_Control.LightSetpoint;
+		mSeekBarLight.setProgress(consigneLight);
 
 		super.onStart();
 	}
 
 	public void onRestart() {
-
 		super.onRestart();
 	}
 
 	public void onDestroy() {
-		Home_Control.run = false;
-
 		super.onDestroy();
 	}
 
 	public void onStop() {
-		// Home_Control.run = false;
-
 		super.onStop();
 	}
 
 	/**
-	 * 
+	 * Traitement Automatique
 	 */
 	public class traitementAutomatique extends Thread {
 
 		public void run() {
 			while (x) {
-				Home_Control.autoShutterState();
-				Home_Control.autoLightLevel();
+				Home_Control.autoShutterState(); // Modification volet
+				Home_Control.autoLightLevel(); //Modification Lumière
 				System.out
 						.println("-----MAIN_ACTIVITY-----Traitement Automatique-----");
 			}
 		}
 	}
 
+	/**
+	 * SEEK BAR
+	 */
+	@Override
+	// action lors d'un changement de valeursur la seek bar
+	public void onProgressChanged(SeekBar seekBar, int progress,
+			boolean fromUser) {
+		consigneLight = progress;
+		Light.setText(consigneLight + "lux"); // Mise à jour du textView
+
+	}
+
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+
+	}
+
+	@Override
+	// action lors de l'arret sur la seek bar
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		Light.setText(consigneLight + "lux"); // Mise à jour du textView
+		new setlumiere().start();
+	}
+
+	/**
+	 * Thread mise à jour consigne luminosité intérieur + modification volet et
+	 * puissance de la lampe
+	 */
+	public class setlumiere extends Thread {
+		public void run() {
+			
+			Home_Control.setLightSetpoint(consigneLight); //changement de la consigne
+			if(!x){
+			Home_Control.autoShutterWithoutTemp(); //mise à jour des volets
+			Home_Control.autoLightLevel(); // Mise à jour de la luminosité
+			
+			}
+		}
+	}
+
 	// ///////////////////////////////////////////
-
 	// onClick
-
 	// ///////////////////////////////////////////
 	public void click_Consigne(View view) {
 		Intent intent = new Intent(this, Consigne.class);
@@ -199,26 +258,4 @@ public class MainActivity extends Activity implements
 		Intent intent = new Intent(this, Configuration.class);
 		startActivity(intent);
 	}
-
-	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {
-		consigneLight = progress;
-		Light.setText(consigneLight + "lux");
-
-	}
-
-	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {
-		
-	}
-
-	@Override
-	public void onStopTrackingTouch(SeekBar seekBar) {
-		Light.setText(consigneLight + "lux");
-		Home_Control.setLightSetpoint(consigneLight);
-		Home_Control.autoShutterWithoutTemp();
-		Home_Control.autoLightLevel();
-	}
-
 }

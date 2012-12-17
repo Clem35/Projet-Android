@@ -6,14 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class Configuration extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	//	 overridePendingTransition(R.anim.shake, R.anim.shake);  //Animation
 		setContentView(R.layout.activity_configuration);
 	}
 
@@ -28,15 +26,11 @@ public class Configuration extends Activity {
 		startActivity(intent);
 	}
 
-	public void popUp(String message) {
-		Toast.makeText(this, message, 1).show();
-	}
-
+	//Modification de l'adresse IP
 	public void onClick_Edit_Address(View view) {
 		EditText editText = (EditText) findViewById(R.id.edit_Address);
 		String x = editText.getText().toString();
 		Home_Control.setAddressIP(x);
-		popUp("adresse : " + x);
 	}
 
 }

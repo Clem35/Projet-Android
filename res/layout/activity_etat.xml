@@ -229,18 +229,19 @@
         </LinearLayout>
     </ScrollView>
 
-<!-- BAS DE PAGE -->
-<!-- BAS DE PAGE -->
+    <!-- BAS DE PAGE -->
+    <!-- BAS DE PAGE -->
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="bottom" >
-
-    <ImageView
-        android:id="@+id/imageView3"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/android" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:gravity="bottom" >
+
+        <ImageView
+            android:id="@+id/imageAndroidBas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android" />
+    </LinearLayout>
+
 </LinearLayout>
